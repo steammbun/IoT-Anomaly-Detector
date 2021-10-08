@@ -11,7 +11,7 @@
 		9CA670802706D33C00BD9D1E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6707F2706D33C00BD9D1E /* ContentView.swift */; };
 		9CA670822706D34200BD9D1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA670812706D34200BD9D1E /* Assets.xcassets */; };
 		9CA670852706D34200BD9D1E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA670842706D34200BD9D1E /* Preview Assets.xcassets */; };
-		9CA6708E270FBEF700BD9D1E /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 9CA6708D270FBEF700BD9D1E /* SwiftUICharts */; };
+		9CA67096270FED2200BD9D1E /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 9CA67095270FED2200BD9D1E /* SwiftUICharts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CA6708E270FBEF700BD9D1E /* SwiftUICharts in Frameworks */,
+				9CA67096270FED2200BD9D1E /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +88,7 @@
 			);
 			name = "IoT Anomaly Detector";
 			packageProductDependencies = (
-				9CA6708D270FBEF700BD9D1E /* SwiftUICharts */,
+				9CA67095270FED2200BD9D1E /* SwiftUICharts */,
 			);
 			productName = "IoT Anomaly Detector";
 			productReference = 9CA6707A2706D33C00BD9D1E /* IoT Anomaly Detector.app */;
@@ -118,7 +118,7 @@
 			);
 			mainGroup = 9CA670712706D33C00BD9D1E;
 			packageReferences = (
-				9CA6708C270FBEF700BD9D1E /* XCRemoteSwiftPackageReference "ChartView" */,
+				9CA67094270FED2200BD9D1E /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 9CA6707B2706D33C00BD9D1E /* Products */;
 			projectDirPath = "";
@@ -336,20 +336,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9CA6708C270FBEF700BD9D1E /* XCRemoteSwiftPackageReference "ChartView" */ = {
+		9CA67094270FED2200BD9D1E /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
+			repositoryURL = "https://github.com/AfrazCodes/SwiftUICharts";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.5;
+				minimumVersion = 0.5.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9CA6708D270FBEF700BD9D1E /* SwiftUICharts */ = {
+		9CA67095270FED2200BD9D1E /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9CA6708C270FBEF700BD9D1E /* XCRemoteSwiftPackageReference "ChartView" */;
+			package = 9CA67094270FED2200BD9D1E /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
 			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
