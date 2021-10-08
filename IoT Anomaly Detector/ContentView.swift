@@ -5,6 +5,7 @@
 //  Created by Steven Khuu on 9/30/21.
 //
 
+import SwiftUICharts
 import SwiftUI
 
 struct Device: Identifiable {
@@ -22,7 +23,7 @@ struct ContentView: View {
         
         NavigationView {
             //ZStack {
-                BackgroundView()
+                //BackgroundView()
                 //VStack {
                     //Text("test")
                     List(devices) { device in
@@ -53,10 +54,15 @@ struct DetailView: View {
     var device: Device
     
     var body: some View {
-        VStack {
-            Text(device.name).font(.title)
+//        VStack {
+//            Text(device.name).font(.title)
+//        }
+//      Spacer()
+        VStack { // line graph
+            LineView(data: [12,22,6,1,2,17,2], title: device.name)
+            Spacer()
         }
-        Spacer()
+        
     }
     
 }
