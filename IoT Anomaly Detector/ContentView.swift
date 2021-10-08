@@ -28,6 +28,7 @@ struct ContentView: View {
                 //BackgroundView()
                 //VStack {
                     //Text("test")
+            
                     List(devices) { device in
                         NavigationLink(destination: DetailView(device: device)){DeviceRow(device: device)
                         }
@@ -38,6 +39,23 @@ struct ContentView: View {
                     
                     
                 }
+                    .toolbar {
+                        Button(action: {
+                            let content = UNMutableNotificationContent()
+                            content.title = "Anomaly Alert"
+                            content.subtitle = "Device #'s activity is abnormal"
+                            content.sound = UNNotificationSound.default
+                            
+                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                            UNUserNotificationCenter.current().add(request)
+                        }) {
+                            Image(systemName: "bell")
+                            
+                            
+                            
+                        }
+                    }
                     .navigationTitle("Devices")
                     .onAppear(perform: {
                         UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) {(_,_) in
@@ -128,15 +146,15 @@ struct DeviceRow: View {
             //)
         //.listRowBackground(Color.white)
     }
-    func createNotification() {
-        let content = UNMutableNotificationContent()
-        content.title = "Anomaly Detected"
-        content.subtitle = device.name
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: "IN-APP", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-    }
+//    func createNotification() {
+//        let content = UNMutableNotificationContent()
+//        content.title = "Anomaly Detected"
+//        content.subtitle = device.name
+//
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+//        let request = UNNotificationRequest(identifier: "IN-APP", content: content, trigger: trigger)
+//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//    }
 }
 struct BackgroundView: View {
     var body: some View {
