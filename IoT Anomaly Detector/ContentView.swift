@@ -20,6 +20,8 @@ struct ContentView: View {
     let devices = [
         Device(name: "Device1", icon: "candybarphone", healthy: true),
         Device(name: "Device2", icon: "candybarphone", healthy: false),
+        Device(name: "Device3", icon: "candybarphone", healthy: true),
+        
     ]
     var body: some View {
         

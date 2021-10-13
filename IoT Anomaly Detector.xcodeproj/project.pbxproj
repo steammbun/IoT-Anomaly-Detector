@@ -12,6 +12,8 @@
 		9CA670822706D34200BD9D1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA670812706D34200BD9D1E /* Assets.xcassets */; };
 		9CA670852706D34200BD9D1E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA670842706D34200BD9D1E /* Preview Assets.xcassets */; };
 		9CA67096270FED2200BD9D1E /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 9CA67095270FED2200BD9D1E /* SwiftUICharts */; };
+		9CA670982710E9A000BD9D1E /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA670972710E9A000BD9D1E /* TestData.swift */; };
+		9CA6709A2710F35800BD9D1E /* TestDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA670992710F35800BD9D1E /* TestDataViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		9CA670812706D34200BD9D1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CA670842706D34200BD9D1E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9CA670862706D34200BD9D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CA670972710E9A000BD9D1E /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		9CA670992710F35800BD9D1E /* TestDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				9CA670812706D34200BD9D1E /* Assets.xcassets */,
 				9CA670862706D34200BD9D1E /* Info.plist */,
 				9CA670832706D34200BD9D1E /* Preview Content */,
+				9CA670972710E9A000BD9D1E /* TestData.swift */,
+				9CA670992710F35800BD9D1E /* TestDataViewModel.swift */,
 			);
 			path = "IoT Anomaly Detector";
 			sourceTree = "<group>";
@@ -146,8 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CA6709A2710F35800BD9D1E /* TestDataViewModel.swift in Sources */,
 				9CA670802706D33C00BD9D1E /* ContentView.swift in Sources */,
 				9CA6707E2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift in Sources */,
+				9CA670982710E9A000BD9D1E /* TestData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
