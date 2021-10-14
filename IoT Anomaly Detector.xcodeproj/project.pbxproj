@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		302FF177B8A897B4D30D6DA0 /* Pods_IoT_Anomaly_Detector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E14A28D74FB4C83F79A225B /* Pods_IoT_Anomaly_Detector.framework */; };
 		9CA6707E2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6707D2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift */; };
 		9CA670802706D33C00BD9D1E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6707F2706D33C00BD9D1E /* ContentView.swift */; };
 		9CA670822706D34200BD9D1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA670812706D34200BD9D1E /* Assets.xcassets */; };
@@ -18,9 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2E14A28D74FB4C83F79A225B /* Pods_IoT_Anomaly_Detector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IoT_Anomaly_Detector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6BE5D5249EFB3DB368809BF8 /* Pods-IoT Anomaly Detector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IoT Anomaly Detector.release.xcconfig"; path = "Target Support Files/Pods-IoT Anomaly Detector/Pods-IoT Anomaly Detector.release.xcconfig"; sourceTree = "<group>"; };
-		8720238DF5EDA34BC9338EB0 /* Pods-IoT Anomaly Detector.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IoT Anomaly Detector.debug.xcconfig"; path = "Target Support Files/Pods-IoT Anomaly Detector/Pods-IoT Anomaly Detector.debug.xcconfig"; sourceTree = "<group>"; };
 		9CA6707A2706D33C00BD9D1E /* IoT Anomaly Detector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IoT Anomaly Detector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA6707D2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoT_Anomaly_DetectorApp.swift; sourceTree = "<group>"; };
 		9CA6707F2706D33C00BD9D1E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,28 +33,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CA67096270FED2200BD9D1E /* SwiftUICharts in Frameworks */,
-				302FF177B8A897B4D30D6DA0 /* Pods_IoT_Anomaly_Detector.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4528F4E7F3D88B97293DE1FB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2E14A28D74FB4C83F79A225B /* Pods_IoT_Anomaly_Detector.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		9CA670712706D33C00BD9D1E = {
 			isa = PBXGroup;
 			children = (
 				9CA6707C2706D33C00BD9D1E /* IoT Anomaly Detector */,
 				9CA6707B2706D33C00BD9D1E /* Products */,
-				CE5552B9515D38751EE33DFC /* Pods */,
-				4528F4E7F3D88B97293DE1FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,16 +77,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		CE5552B9515D38751EE33DFC /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8720238DF5EDA34BC9338EB0 /* Pods-IoT Anomaly Detector.debug.xcconfig */,
-				6BE5D5249EFB3DB368809BF8 /* Pods-IoT Anomaly Detector.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,11 +84,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CA670892706D34200BD9D1E /* Build configuration list for PBXNativeTarget "IoT Anomaly Detector" */;
 			buildPhases = (
-				671E0B0D4F3C5C2A6400E24C /* [CP] Check Pods Manifest.lock */,
 				9CA670762706D33C00BD9D1E /* Sources */,
 				9CA670772706D33C00BD9D1E /* Frameworks */,
 				9CA670782706D33C00BD9D1E /* Resources */,
-				EBF20ECA122DD4EACA556A28 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -173,48 +146,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		671E0B0D4F3C5C2A6400E24C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IoT Anomaly Detector-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EBF20ECA122DD4EACA556A28 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-IoT Anomaly Detector/Pods-IoT Anomaly Detector-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-IoT Anomaly Detector/Pods-IoT Anomaly Detector-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IoT Anomaly Detector/Pods-IoT Anomaly Detector-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9CA670762706D33C00BD9D1E /* Sources */ = {
@@ -349,7 +280,6 @@
 		};
 		9CA6708A2706D34200BD9D1E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8720238DF5EDA34BC9338EB0 /* Pods-IoT Anomaly Detector.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -371,7 +301,6 @@
 		};
 		9CA6708B2706D34200BD9D1E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BE5D5249EFB3DB368809BF8 /* Pods-IoT Anomaly Detector.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
