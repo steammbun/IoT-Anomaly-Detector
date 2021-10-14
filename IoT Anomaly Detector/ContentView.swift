@@ -17,6 +17,8 @@ struct Device: Identifiable {
 }
 
 struct ContentView: View {
+    @ObservedObject var testDataVM = TestDataViewModel();
+    
     let devices = [
         Device(name: "Device1", icon: "candybarphone", healthy: true),
         Device(name: "Device2", icon: "candybarphone", healthy: false),
@@ -30,17 +32,19 @@ struct ContentView: View {
                 //BackgroundView()
                 //VStack {
                     //Text("test")
-            
-                    List(devices) { device in
-                        NavigationLink(destination: DetailView(device: device)){DeviceRow(device: device)
-                        }
-                        
-                           
-                    //}
-                    //.padding()
-                    
+            VStack {
+                
+                List(devices) { device in
+                    NavigationLink(destination: DetailView(device: device)){DeviceRow(device: device)
+                    }
                     
                 }
+                List {
+                    ForEach(testDataVM.testData) { testData in
+                        Text(testData.device + " " + testData.name)
+                    }
+                }
+            }
                     .toolbar {
                         Button(action: {
                             let content = UNMutableNotificationContent()
