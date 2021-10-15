@@ -7,24 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110F969D2717D6A700344B59 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 110F969B2717D6A700344B59 /* amplifyconfiguration.json */; };
+		110F969E2717D6A700344B59 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 110F969C2717D6A700344B59 /* awsconfiguration.json */; };
+		110F96A02717D6F700344B59 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F969F2717D6F700344B59 /* Backend.swift */; };
+		110F96AA2717F38900344B59 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A32717F38900344B59 /* AmplifyModels.swift */; };
+		110F96AB2717F38900344B59 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A42717F38900344B59 /* TestData.swift */; };
+		110F96AC2717F38900344B59 /* Note+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A52717F38900344B59 /* Note+Schema.swift */; };
+		110F96AD2717F38900344B59 /* TestData+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A62717F38900344B59 /* TestData+Schema.swift */; };
+		110F96AE2717F38900344B59 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A72717F38900344B59 /* Note.swift */; };
+		110F96AF2717F38900344B59 /* Task+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A82717F38900344B59 /* Task+Schema.swift */; };
+		110F96B02717F38900344B59 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A92717F38900344B59 /* Task.swift */; };
+		110F96B22717FA2E00344B59 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96B12717FA2E00344B59 /* Extension.swift */; };
+		116495E8D51712F32BBF3E38 /* Pods_IoT_Anomaly_Detector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C86D4B899FE11990EFE2D9 /* Pods_IoT_Anomaly_Detector.framework */; };
 		9CA6707E2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6707D2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift */; };
 		9CA670802706D33C00BD9D1E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6707F2706D33C00BD9D1E /* ContentView.swift */; };
 		9CA670822706D34200BD9D1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA670812706D34200BD9D1E /* Assets.xcassets */; };
 		9CA670852706D34200BD9D1E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA670842706D34200BD9D1E /* Preview Assets.xcassets */; };
 		9CA67096270FED2200BD9D1E /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 9CA67095270FED2200BD9D1E /* SwiftUICharts */; };
-		9CA670982710E9A000BD9D1E /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA670972710E9A000BD9D1E /* TestData.swift */; };
 		9CA6709A2710F35800BD9D1E /* TestDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA670992710F35800BD9D1E /* TestDataViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		110F969B2717D6A700344B59 /* amplifyconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		110F969C2717D6A700344B59 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		110F969F2717D6F700344B59 /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
+		110F96A32717F38900344B59 /* AmplifyModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplifyModels.swift; sourceTree = "<group>"; };
+		110F96A42717F38900344B59 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		110F96A52717F38900344B59 /* Note+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+Schema.swift"; sourceTree = "<group>"; };
+		110F96A62717F38900344B59 /* TestData+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TestData+Schema.swift"; sourceTree = "<group>"; };
+		110F96A72717F38900344B59 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		110F96A82717F38900344B59 /* Task+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+Schema.swift"; sourceTree = "<group>"; };
+		110F96A92717F38900344B59 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		110F96B12717FA2E00344B59 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		41C86D4B899FE11990EFE2D9 /* Pods_IoT_Anomaly_Detector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IoT_Anomaly_Detector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88C33EC4F8715F73E70F665D /* Pods-IoT Anomaly Detector.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IoT Anomaly Detector.debug.xcconfig"; path = "Target Support Files/Pods-IoT Anomaly Detector/Pods-IoT Anomaly Detector.debug.xcconfig"; sourceTree = "<group>"; };
 		9CA6707A2706D33C00BD9D1E /* IoT Anomaly Detector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IoT Anomaly Detector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA6707D2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoT_Anomaly_DetectorApp.swift; sourceTree = "<group>"; };
 		9CA6707F2706D33C00BD9D1E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9CA670812706D34200BD9D1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CA670842706D34200BD9D1E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9CA670862706D34200BD9D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9CA670972710E9A000BD9D1E /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		9CA670992710F35800BD9D1E /* TestDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataViewModel.swift; sourceTree = "<group>"; };
+		C33C278567B8720E75A63C40 /* Pods-IoT Anomaly Detector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IoT Anomaly Detector.release.xcconfig"; path = "Target Support Files/Pods-IoT Anomaly Detector/Pods-IoT Anomaly Detector.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +57,54 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CA67096270FED2200BD9D1E /* SwiftUICharts in Frameworks */,
+				116495E8D51712F32BBF3E38 /* Pods_IoT_Anomaly_Detector.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		110F96A12717F38900344B59 /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				110F96A22717F38900344B59 /* models */,
+			);
+			name = generated;
+			path = amplify/generated;
+			sourceTree = SOURCE_ROOT;
+		};
+		110F96A22717F38900344B59 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				110F96A32717F38900344B59 /* AmplifyModels.swift */,
+				110F96A42717F38900344B59 /* TestData.swift */,
+				110F96A52717F38900344B59 /* Note+Schema.swift */,
+				110F96A62717F38900344B59 /* TestData+Schema.swift */,
+				110F96A72717F38900344B59 /* Note.swift */,
+				110F96A82717F38900344B59 /* Task+Schema.swift */,
+				110F96A92717F38900344B59 /* Task.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		4A47E4C256E601ED4FFFB1DB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				88C33EC4F8715F73E70F665D /* Pods-IoT Anomaly Detector.debug.xcconfig */,
+				C33C278567B8720E75A63C40 /* Pods-IoT Anomaly Detector.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9CA670712706D33C00BD9D1E = {
 			isa = PBXGroup;
 			children = (
+				110F969B2717D6A700344B59 /* amplifyconfiguration.json */,
+				110F969C2717D6A700344B59 /* awsconfiguration.json */,
 				9CA6707C2706D33C00BD9D1E /* IoT Anomaly Detector */,
 				9CA6707B2706D33C00BD9D1E /* Products */,
+				4A47E4C256E601ED4FFFB1DB /* Pods */,
+				F9BF3AC5EB83379BA86F1DAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +119,15 @@
 		9CA6707C2706D33C00BD9D1E /* IoT Anomaly Detector */ = {
 			isa = PBXGroup;
 			children = (
+				110F96A12717F38900344B59 /* generated */,
 				9CA6707D2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift */,
 				9CA6707F2706D33C00BD9D1E /* ContentView.swift */,
 				9CA670812706D34200BD9D1E /* Assets.xcassets */,
 				9CA670862706D34200BD9D1E /* Info.plist */,
 				9CA670832706D34200BD9D1E /* Preview Content */,
-				9CA670972710E9A000BD9D1E /* TestData.swift */,
 				9CA670992710F35800BD9D1E /* TestDataViewModel.swift */,
+				110F969F2717D6F700344B59 /* Backend.swift */,
+				110F96B12717FA2E00344B59 /* Extension.swift */,
 			);
 			path = "IoT Anomaly Detector";
 			sourceTree = "<group>";
@@ -77,6 +140,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		F9BF3AC5EB83379BA86F1DAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41C86D4B899FE11990EFE2D9 /* Pods_IoT_Anomaly_Detector.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -84,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CA670892706D34200BD9D1E /* Build configuration list for PBXNativeTarget "IoT Anomaly Detector" */;
 			buildPhases = (
+				611F53E0AD282306761CD717 /* [CP] Check Pods Manifest.lock */,
 				9CA670762706D33C00BD9D1E /* Sources */,
 				9CA670772706D33C00BD9D1E /* Frameworks */,
 				9CA670782706D33C00BD9D1E /* Resources */,
+				56F9433570649D30F63366A6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -140,12 +213,56 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				110F969E2717D6A700344B59 /* awsconfiguration.json in Resources */,
 				9CA670852706D34200BD9D1E /* Preview Assets.xcassets in Resources */,
+				110F969D2717D6A700344B59 /* amplifyconfiguration.json in Resources */,
 				9CA670822706D34200BD9D1E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		56F9433570649D30F63366A6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IoT Anomaly Detector/Pods-IoT Anomaly Detector-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IoT Anomaly Detector/Pods-IoT Anomaly Detector-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IoT Anomaly Detector/Pods-IoT Anomaly Detector-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		611F53E0AD282306761CD717 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IoT Anomaly Detector-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9CA670762706D33C00BD9D1E /* Sources */ = {
@@ -155,7 +272,15 @@
 				9CA6709A2710F35800BD9D1E /* TestDataViewModel.swift in Sources */,
 				9CA670802706D33C00BD9D1E /* ContentView.swift in Sources */,
 				9CA6707E2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift in Sources */,
-				9CA670982710E9A000BD9D1E /* TestData.swift in Sources */,
+				110F96B22717FA2E00344B59 /* Extension.swift in Sources */,
+				110F96B02717F38900344B59 /* Task.swift in Sources */,
+				110F96AA2717F38900344B59 /* AmplifyModels.swift in Sources */,
+				110F96AE2717F38900344B59 /* Note.swift in Sources */,
+				110F96AB2717F38900344B59 /* TestData.swift in Sources */,
+				110F96AD2717F38900344B59 /* TestData+Schema.swift in Sources */,
+				110F96AF2717F38900344B59 /* Task+Schema.swift in Sources */,
+				110F96AC2717F38900344B59 /* Note+Schema.swift in Sources */,
+				110F96A02717D6F700344B59 /* Backend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +405,7 @@
 		};
 		9CA6708A2706D34200BD9D1E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88C33EC4F8715F73E70F665D /* Pods-IoT Anomaly Detector.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -301,6 +427,7 @@
 		};
 		9CA6708B2706D34200BD9D1E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C33C278567B8720E75A63C40 /* Pods-IoT Anomaly Detector.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

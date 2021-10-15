@@ -9,6 +9,60 @@ import UserNotifications
 import SwiftUICharts
 import SwiftUI
 
+// class Test
+/*
+class Test : Identifiable, ObservableObject {
+    var id : String
+    var name : String?
+    var device : String?
+    var reading : Int?
+    var time : Int?
+    
+    init(id: String, name: String? = nil, device: String? = nil, reading: Int? = nil, time: Int? = nil) {
+        self.id = id
+        self.name = name
+        self.device = device
+        self.reading = reading
+        self.time = time
+    }
+    
+    convenience init(from data: TestData) {
+        self.init(id: data.id, name: data.name, device: data.device, reading: data.reading, time: data.time)
+        
+        
+        
+        // store API object for easy retrieval later
+        self._data = data
+    }
+    
+    fileprivate var _data : TestData?
+    
+    // access the privately stored NoteData or build one if we don't have one.
+    var data : TestData {
+
+        if (_data == nil) {
+            _data = TestData(id: self.id,
+                             name: self.name,
+                             device: self.device,
+                             reading: self.reading,
+                             time: self.time)
+        }
+
+        return _data!
+    }
+    
+}
+*/
+ 
+
+class UserData : ObservableObject {
+    private init() {}
+    static let shared = UserData()
+
+    //@Published var tests : [Test] = []
+    @Published var isSignedIn : Bool = false
+}
+
 struct Device: Identifiable {
     var id = UUID()
     var name: String
@@ -18,6 +72,7 @@ struct Device: Identifiable {
 
 struct ContentView: View {
     @ObservedObject var testDataVM = TestDataViewModel();
+    @ObservedObject private var userData: UserData = .shared
     
     let devices = [
         Device(name: "Device1", icon: "candybarphone", healthy: true),
@@ -27,52 +82,71 @@ struct ContentView: View {
     ]
     var body: some View {
         
-        NavigationView {
-            //ZStack {
-                //BackgroundView()
-                //VStack {
-                    //Text("test")
-            VStack {
+        ZStack {
+            if (userData.isSignedIn) {
+            NavigationView {
                 
-                List(devices) { device in
-                    NavigationLink(destination: DetailView(device: device)){DeviceRow(device: device)
+                    //BackgroundView()
+                    //VStack {
+                        //Text("test")
+                VStack {
+                    Button(action: {
+                        Backend.shared.createTestData()
+                    }) {
+                        Text("Create TestData entry")
                     }
-                    
-                }
-                List {
-                    ForEach(testDataVM.testData) { testData in
-                        Text(testData.device + " " + testData.name)
+                    Button(action: {
+                        Backend.shared.getTestData()
+                    }) {
+                        Text("Retrieve TestData from API")
                     }
+                    List(devices) { device in
+                        NavigationLink(destination: DetailView(device: device)){DeviceRow(device: device)
+                        }
+                        
+                    }
+                    /*List {
+                        ForEach(userData.tests) { test in
+                            Text((test.device ?? "") + " " + (test.name ?? ""))
+                        }*/
+                        /*ForEach(testDataVM.testData) { testData in
+                            Text((testData.device ?? "") + " " + (testData.name ?? ""))
+                        }
+                    }*/
                 }
+                        .toolbar {
+                            Button(action: {
+                                let content = UNMutableNotificationContent()
+                                content.title = "Anomaly Alert"
+                                content.subtitle = "Device #'s activity is abnormal"
+                                content.sound = UNNotificationSound.default
+                                
+                                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                                UNUserNotificationCenter.current().add(request)
+                            }) {
+                                Image(systemName: "bell")
+                                
+                                
+                                
+                            }
+                        }
+                        .navigationTitle("Devices")
+                        .navigationBarItems(leading: SignOutButton())
+                        .onAppear(perform: {
+                            UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) {(_,_) in
+                                
+                            }
+                        })
+                }
+                
+            } else {
+                
+                SignInButton()
             }
-                    .toolbar {
-                        Button(action: {
-                            let content = UNMutableNotificationContent()
-                            content.title = "Anomaly Alert"
-                            content.subtitle = "Device #'s activity is abnormal"
-                            content.sound = UNNotificationSound.default
-                            
-                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-                            UNUserNotificationCenter.current().add(request)
-                        }) {
-                            Image(systemName: "bell")
-                            
-                            
-                            
-                        }
-                    }
-                    .navigationTitle("Devices")
-                    .onAppear(perform: {
-                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) {(_,_) in
-                            
-                        }
-                    })
-                
-            //}
-        }
             
         
+        }
     }
 }
 
@@ -82,6 +156,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+// each devices own detailed view (currently holding sample graph data)
 struct DetailView: View {
     var device: Device
     
@@ -162,6 +237,34 @@ struct DeviceRow: View {
 //        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 //    }
 }
+
+struct SignInButton: View {
+    var body: some View {
+        Button(action: { Backend.shared.signIn() }){
+            HStack {
+                Image(systemName: "person.fill")
+                    .scaleEffect(1.5)
+                    .padding()
+                Text("Sign In")
+                    .font(.largeTitle)
+            }
+            .padding()
+            .foregroundColor(.white)
+            .background(Color.green)
+            .cornerRadius(30)
+        }
+    }
+}
+
+struct SignOutButton : View {
+    var body: some View {
+        Button(action: { Backend.shared.signOut() }) {
+                Text("Sign Out")
+        }
+    }
+}
+
+// currently unused
 struct BackgroundView: View {
     var body: some View {
         LinearGradient(gradient: Gradient(colors: [Color.orange,Color.white

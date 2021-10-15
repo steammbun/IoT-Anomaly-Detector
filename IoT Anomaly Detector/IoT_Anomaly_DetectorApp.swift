@@ -15,3 +15,11 @@ struct IoT_Anomaly_DetectorApp: App {
         }
     }
 }
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+    // initialize Amplify
+    let _ = Backend.initialize()
+
+    return true
+}
