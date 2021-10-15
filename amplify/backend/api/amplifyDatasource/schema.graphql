@@ -1,0 +1,7 @@
+type TestData @model {
+  id: ID!
+  name: String
+  device: String
+  reading: Int
+  time: Int
+}

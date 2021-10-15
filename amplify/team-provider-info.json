@@ -1,0 +1,21 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-iot-anomaly-detector-dev-220137-authRole",
+      "UnauthRoleArn": "arn:aws:iam::341854368677:role/amplify-iot-anomaly-detector-dev-220137-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::341854368677:role/amplify-iot-anomaly-detector-dev-220137-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-iot-anomaly-detector-dev-220137-deployment",
+      "UnauthRoleName": "amplify-iot-anomaly-detector-dev-220137-unauthRole",
+      "StackName": "amplify-iot-anomaly-detector-dev-220137",
+      "StackId": "arn:aws:cloudformation:us-east-1:341854368677:stack/amplify-iot-anomaly-detector-dev-220137/0e80fc50-2c9b-11ec-abd8-12f6914b066f",
+      "AmplifyAppId": "d175sq6ar838k4"
+    },
+    "categories": {
+      "auth": {
+        "iotanomalydetector40d56ad9": {},
+        "iotanomalydetectora9772cbd": {}
+      }
+    }
+  }
+}
