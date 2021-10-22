@@ -10,6 +10,24 @@ import AmplifyPlugins
 import UIKit
 import Amplify
 
+struct DeviceData: Decodable, Identifiable {
+    let id = UUID()
+    var pkID: String
+    var device: String?
+    var name: String?
+    var reading: Int?
+    var time: Int?
+}
+
+/*
+class Test: ObservableObject {
+    @Published var devicesList: [DeviceData] = []
+}*/
+
+
+var deviceList: [DeviceData] = []
+
+
 class Backend {
     var subscription: GraphQLSubscriptionOperation<TestData>?
     static let shared = Backend()
@@ -114,7 +132,9 @@ class Backend {
     }
     
     func createTestData() {
-        let testData = TestData(name: "speed", device: "fan", reading: 16, time: 1)
+        let reading = Int.random(in: 1..<100);
+        let time = Int.random(in: 1..<10000);
+        let testData = TestData(name: "speed", device: "fan", reading: reading, time: time)
         Amplify.API.mutate(request: .create(testData)) { event in
             switch event {
                 
@@ -131,8 +151,14 @@ class Backend {
         }
     }
     
+    func getDevices() {
+        
+    }
+    
     func getTestData() {
-        Amplify.API.query(request: .get(TestData.self, byId: "fridge7")) { event in
+        let testId = "fridge7"
+        //testId = "fridge7"
+        Amplify.API.query(request: .get(TestData.self, byId: testId)) { event in
             switch event {
             case .success(let result):
                 switch result {
@@ -154,6 +180,7 @@ class Backend {
     }
     
     func createSubscription() {
+        
         subscription = Amplify.API.subscribe(request: .subscription(of: TestData.self, type:. onCreate), valueListener: {(subscriptionEvent) in
             switch subscriptionEvent {
             case .connection(let subscriptionConnectionState):
@@ -161,6 +188,14 @@ class Backend {
             case .data(let result):
                 switch result {
                 case .success(let createdTestData):
+                    // create device data
+                    DispatchQueue.main.async {
+                        let readData: DeviceData = DeviceData(pkID: createdTestData.id, device: createdTestData.device, name: createdTestData.device, reading: createdTestData.reading, time: createdTestData.time)
+                        deviceList.append(readData)
+                        
+                        print("Successfully updated deviceList, num items: ", deviceList.count)
+                    }
+                    
                     print("Successfully got testData from subscription: \(createdTestData)")
                 case .failure(let error):
                     print("Got failed result with \(error.errorDescription)")

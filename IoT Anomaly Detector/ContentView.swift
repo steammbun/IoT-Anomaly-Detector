@@ -59,6 +59,7 @@ class UserData : ObservableObject {
     private init() {}
     static let shared = UserData()
 
+    
     //@Published var tests : [Test] = []
     @Published var isSignedIn : Bool = false
 }
@@ -68,10 +69,14 @@ struct Device: Identifiable {
     var name: String
     var icon: String
     var healthy: Bool
+    // device data []
 }
 
 struct ContentView: View {
-    @ObservedObject var testDataVM = TestDataViewModel();
+    
+    //var devData: DeviceData
+    //@ObservedObject var testDataVM = TestDataViewModel();
+    
     @ObservedObject private var userData: UserData = .shared
     
     let devices = [
@@ -109,7 +114,8 @@ struct ContentView: View {
                         ForEach(userData.tests) { test in
                             Text((test.device ?? "") + " " + (test.name ?? ""))
                         }*/
-                        /*ForEach(testDataVM.testData) { testData in
+                        /*
+                        ForEach(testDataVM.testData) { testData in
                             Text((testData.device ?? "") + " " + (testData.name ?? ""))
                         }
                     }*/
@@ -166,16 +172,9 @@ struct DetailView: View {
 //        }
 //      Spacer()
         VStack { // bar graph
-            let highIntensity = Legend(color: .orange, label: "High Intensity", order: 5)
-            let buildFitness = Legend(color: .yellow, label: "Build Fitness", order: 4)
-            let fatBurning = Legend(color: .green, label: "Fat Burning", order: 3)
-            let warmUp = Legend(color: .blue, label: "Warm Up", order: 2)
-            let low = Legend(color: .gray, label: "Low", order: 1)
-
-            let limit = DataPoint(value: 130, label: "5", legend: fatBurning)
-
-            let points: [DataPoint] = [
-                .init(value: 70, label: "1", legend: low),
+            
+            /*var points: [DataPoint] = [
+                .init(value: 1, label: "1", legend: low),
                 .init(value: 90, label: "2", legend: warmUp),
                 .init(value: 91, label: "3", legend: warmUp),
                 .init(value: 92, label: "4", legend: warmUp),
@@ -199,12 +198,34 @@ struct DetailView: View {
                 .init(value: 159, label: "22", legend: highIntensity),
                 .init(value: 161, label: "23", legend: highIntensity),
                 .init(value: 158, label: "24", legend: highIntensity),
-            ]
-
-            BarChartView(dataPoints: points, limit: limit)
+            ]*/
+            
+            
+            BarChartView(dataPoints: makeDataPoint())
             Spacer()
         }
         
+    }
+    // return points
+    func makeDataPoint() -> [DataPoint] {
+        let highIntensity = Legend(color: .orange, label: "High Intensity", order: 5)
+        let buildFitness = Legend(color: .yellow, label: "Build Fitness", order: 4)
+        let fatBurning = Legend(color: .green, label: "Fat Burning", order: 3)
+        let warmUp = Legend(color: .blue, label: "Warm Up", order: 2)
+        let low = Legend(color: .gray, label: "Low", order: 1)
+        
+        //let limit = DataPoint(value: 130, label: "5", legend: fatBurning)
+        
+        var points: [DataPoint] = [
+            .init(value: 1, label: "1", legend: low),
+            ]
+        
+        for i in 0..<deviceList.count {
+            let point = DataPoint(value: Double(deviceList[i].reading ?? 0), label: LocalizedStringKey(String(deviceList[i].time ?? 0)), legend: low)
+            //var point = DataPoint(value: 1, label: "", legend: low)
+            points.append(point)
+        }
+        return points
     }
     
 }

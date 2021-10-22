@@ -18,6 +18,7 @@
 		110F96AF2717F38900344B59 /* Task+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A82717F38900344B59 /* Task+Schema.swift */; };
 		110F96B02717F38900344B59 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A92717F38900344B59 /* Task.swift */; };
 		110F96B22717FA2E00344B59 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96B12717FA2E00344B59 /* Extension.swift */; };
+		1124BEC9272316A600C6B226 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1124BEC8272316A600C6B226 /* DeviceData.swift */; };
 		116495E8D51712F32BBF3E38 /* Pods_IoT_Anomaly_Detector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C86D4B899FE11990EFE2D9 /* Pods_IoT_Anomaly_Detector.framework */; };
 		9CA6707E2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6707D2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift */; };
 		9CA670802706D33C00BD9D1E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6707F2706D33C00BD9D1E /* ContentView.swift */; };
@@ -39,6 +40,7 @@
 		110F96A82717F38900344B59 /* Task+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+Schema.swift"; sourceTree = "<group>"; };
 		110F96A92717F38900344B59 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		110F96B12717FA2E00344B59 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		1124BEC8272316A600C6B226 /* DeviceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceData.swift; sourceTree = "<group>"; };
 		41C86D4B899FE11990EFE2D9 /* Pods_IoT_Anomaly_Detector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IoT_Anomaly_Detector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C33EC4F8715F73E70F665D /* Pods-IoT Anomaly Detector.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IoT Anomaly Detector.debug.xcconfig"; path = "Target Support Files/Pods-IoT Anomaly Detector/Pods-IoT Anomaly Detector.debug.xcconfig"; sourceTree = "<group>"; };
 		9CA6707A2706D33C00BD9D1E /* IoT Anomaly Detector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IoT Anomaly Detector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +130,7 @@
 				9CA670992710F35800BD9D1E /* TestDataViewModel.swift */,
 				110F969F2717D6F700344B59 /* Backend.swift */,
 				110F96B12717FA2E00344B59 /* Extension.swift */,
+				1124BEC8272316A600C6B226 /* DeviceData.swift */,
 			);
 			path = "IoT Anomaly Detector";
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				110F96AB2717F38900344B59 /* TestData.swift in Sources */,
 				110F96AD2717F38900344B59 /* TestData+Schema.swift in Sources */,
 				110F96AF2717F38900344B59 /* Task+Schema.swift in Sources */,
+				1124BEC9272316A600C6B226 /* DeviceData.swift in Sources */,
 				110F96AC2717F38900344B59 /* Note+Schema.swift in Sources */,
 				110F96A02717D6F700344B59 /* Backend.swift in Sources */,
 			);
