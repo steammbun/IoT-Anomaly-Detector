@@ -4,9 +4,8 @@
 //
 //  Created by Steven Khuu on 9/30/21.
 //
-
 import UserNotifications
-import SwiftUICharts
+//import SwiftUICharts
 import SwiftUI
 
 // class Test
@@ -59,8 +58,7 @@ class UserData : ObservableObject {
     private init() {}
     static let shared = UserData()
 
-    
-    //@Published var tests : [Test] = []
+    @Published var testDeviceList : DeviceData?
     @Published var isSignedIn : Bool = false
 }
 
@@ -74,26 +72,20 @@ struct Device: Identifiable {
 
 struct ContentView: View {
     
-    //var devData: DeviceData
-    //@ObservedObject var testDataVM = TestDataViewModel();
-    
     @ObservedObject private var userData: UserData = .shared
     
     let devices = [
         Device(name: "Device1", icon: "candybarphone", healthy: true),
         Device(name: "Device2", icon: "candybarphone", healthy: false),
         Device(name: "Device3", icon: "candybarphone", healthy: true),
-        
     ]
+    
     var body: some View {
         
         ZStack {
             if (userData.isSignedIn) {
             NavigationView {
                 
-                    //BackgroundView()
-                    //VStack {
-                        //Text("test")
                 VStack {
                     Button(action: {
                         Backend.shared.createTestData()
@@ -105,11 +97,17 @@ struct ContentView: View {
                     }) {
                         Text("Retrieve TestData from API")
                     }
-                    List(devices) { device in
+                    List {
+                        NavigationLink(destination: TestDetailView()){
+                            TestDeviceRow()
+                        }
+                    }
+                    
+                    /*List(devices) { device in
                         NavigationLink(destination: DetailView(device: device)){DeviceRow(device: device)
                         }
-                        
-                    }
+                    }*/
+                    
                     /*List {
                         ForEach(userData.tests) { test in
                             Text((test.device ?? "") + " " + (test.name ?? ""))
@@ -132,9 +130,6 @@ struct ContentView: View {
                                 UNUserNotificationCenter.current().add(request)
                             }) {
                                 Image(systemName: "bell")
-                                
-                                
-                                
                             }
                         }
                         .navigationTitle("Devices")
@@ -150,8 +145,6 @@ struct ContentView: View {
                 
                 SignInButton()
             }
-            
-        
         }
     }
 }
@@ -163,6 +156,37 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 // each devices own detailed view (currently holding sample graph data)
+struct TestDetailView: View {
+    
+    var body: some View {
+        TabView {
+            TestDetailViewTab1()
+                .tabItem {
+                    Label("Tab1", systemImage: "chart.xyaxis.line")
+                }
+            TestDetailViewTab2()
+                .tabItem {
+                    Label("Tab2", systemImage: "chart.xyaxis.line")
+                }
+        }
+    }
+}
+
+struct TestDetailViewTab1: View {
+    var body: some View{
+        HStack{
+            Text("Tab 1")
+        }
+    }
+}
+struct TestDetailViewTab2: View {
+    var body: some View{
+        HStack{
+            Text("Tab 2")
+        }
+    }
+}
+
 struct DetailView: View {
     var device: Device
     
@@ -173,41 +197,14 @@ struct DetailView: View {
 //      Spacer()
         VStack { // bar graph
             
-            /*var points: [DataPoint] = [
-                .init(value: 1, label: "1", legend: low),
-                .init(value: 90, label: "2", legend: warmUp),
-                .init(value: 91, label: "3", legend: warmUp),
-                .init(value: 92, label: "4", legend: warmUp),
-                .init(value: 130, label: "5", legend: fatBurning),
-                .init(value: 124, label: "6", legend: fatBurning),
-                .init(value: 135, label: "7", legend: fatBurning),
-                .init(value: 133, label: "8", legend: fatBurning),
-                .init(value: 136, label: "9", legend: fatBurning),
-                .init(value: 138, label: "10", legend: fatBurning),
-                .init(value: 150, label: "11", legend: buildFitness),
-                .init(value: 151, label: "12", legend: buildFitness),
-                .init(value: 150, label: "13", legend: buildFitness),
-                .init(value: 136, label: "14", legend: fatBurning),
-                .init(value: 135, label: "15", legend: fatBurning),
-                .init(value: 130, label: "16", legend: fatBurning),
-                .init(value: 130, label: "17", legend: fatBurning),
-                .init(value: 150, label: "18", legend: buildFitness),
-                .init(value: 151, label: "19", legend: buildFitness),
-                .init(value: 150, label: "20", legend: buildFitness),
-                .init(value: 160, label: "21", legend: highIntensity),
-                .init(value: 159, label: "22", legend: highIntensity),
-                .init(value: 161, label: "23", legend: highIntensity),
-                .init(value: 158, label: "24", legend: highIntensity),
-            ]*/
             
-            
-            BarChartView(dataPoints: makeDataPoint())
+            //BarChartView(dataPoints: makeDataPoint())
             Spacer()
         }
         
     }
     // return points
-    func makeDataPoint() -> [DataPoint] {
+    /*func makeDataPoint() -> [DataPoint] {
         let highIntensity = Legend(color: .orange, label: "High Intensity", order: 5)
         let buildFitness = Legend(color: .yellow, label: "Build Fitness", order: 4)
         let fatBurning = Legend(color: .green, label: "Fat Burning", order: 3)
@@ -226,6 +223,17 @@ struct DetailView: View {
             points.append(point)
         }
         return points
+    }*/
+    
+}
+
+struct TestDeviceRow: View {
+    //var testDeviceList: [DeviceData]
+    var body: some View{
+        HStack {
+            Image(systemName: "wrench.and.screwdriver")
+            Text("Test Device")
+        }
     }
     
 }
@@ -248,15 +256,6 @@ struct DeviceRow: View {
             //)
         //.listRowBackground(Color.white)
     }
-//    func createNotification() {
-//        let content = UNMutableNotificationContent()
-//        content.title = "Anomaly Detected"
-//        content.subtitle = device.name
-//
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-//        let request = UNNotificationRequest(identifier: "IN-APP", content: content, trigger: trigger)
-//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-//    }
 }
 
 struct SignInButton: View {

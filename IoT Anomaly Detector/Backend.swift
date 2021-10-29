@@ -17,13 +17,8 @@ struct DeviceData: Decodable, Identifiable {
     var name: String?
     var reading: Int?
     var time: Int?
+    //var readings: [Int]?
 }
-
-/*
-class Test: ObservableObject {
-    @Published var devicesList: [DeviceData] = []
-}*/
-
 
 var deviceList: [DeviceData] = []
 
@@ -134,10 +129,9 @@ class Backend {
     func createTestData() {
         let reading = Int.random(in: 1..<100);
         let time = Int.random(in: 1..<10000);
-        let testData = TestData(name: "speed", device: "fan", reading: reading, time: time)
+        let testData = TestData(name: "speed", device: "TestDevice", reading: reading, time: time)
         Amplify.API.mutate(request: .create(testData)) { event in
             switch event {
-                
             case .success(let result):
                 switch result {
                 case .success(let testData):
@@ -174,13 +168,10 @@ class Backend {
             case .failure(let error):
                 print("Got failed event with error \(error)")
             }
-            
-            
         }
     }
     
     func createSubscription() {
-        
         subscription = Amplify.API.subscribe(request: .subscription(of: TestData.self, type:. onCreate), valueListener: {(subscriptionEvent) in
             switch subscriptionEvent {
             case .connection(let subscriptionConnectionState):
@@ -190,12 +181,14 @@ class Backend {
                 case .success(let createdTestData):
                     // create device data
                     DispatchQueue.main.async {
+                        let userData : UserData = .shared
                         let readData: DeviceData = DeviceData(pkID: createdTestData.id, device: createdTestData.device, name: createdTestData.device, reading: createdTestData.reading, time: createdTestData.time)
                         deviceList.append(readData)
-                        
+                        //userData.testDeviceList.append(readData)
                         print("Successfully updated deviceList, num items: ", deviceList.count)
+                        //print("Successfully updated testDeviceList, num items: ", userData.testDeviceList.count)
+
                     }
-                    
                     print("Successfully got testData from subscription: \(createdTestData)")
                 case .failure(let error):
                     print("Got failed result with \(error.errorDescription)")
@@ -208,7 +201,6 @@ class Backend {
             case .failure(let apiError):
                 print("Subscription has terminated with \(apiError)")
             }
-            
         }
     }
     
@@ -219,14 +211,12 @@ class Backend {
     // query test
     /*
     func queryTest() {
-
             _ = Amplify.API.query(request: .list(TestData.self)) { event in
                 switch event {
                 case .success(let result):
                     switch result {
                     case .success(let testsData):
                         print("Successfully retrieved list of tests")
-
                         // convert an array of NoteData to an array of Note class instances
                         for n in testsData {
                             let test = Test.init(from: n)
@@ -234,7 +224,6 @@ class Backend {
                                 UserData.shared.tests.append(test)
                             }
                         }
-
                     case .failure(let error):
                         print("Can not retrieve result : error  \(error.errorDescription)")
                     }
@@ -242,8 +231,6 @@ class Backend {
                     print("Can not retrieve Notes : error \(error)")
                 }
             }
-        }
-     */
+        }*/
 
-    
 }

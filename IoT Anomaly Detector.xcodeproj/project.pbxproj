@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,7 +24,6 @@
 		9CA670802706D33C00BD9D1E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6707F2706D33C00BD9D1E /* ContentView.swift */; };
 		9CA670822706D34200BD9D1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA670812706D34200BD9D1E /* Assets.xcassets */; };
 		9CA670852706D34200BD9D1E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA670842706D34200BD9D1E /* Preview Assets.xcassets */; };
-		9CA67096270FED2200BD9D1E /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 9CA67095270FED2200BD9D1E /* SwiftUICharts */; };
 		9CA6709A2710F35800BD9D1E /* TestDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA670992710F35800BD9D1E /* TestDataViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CA67096270FED2200BD9D1E /* SwiftUICharts in Frameworks */,
 				116495E8D51712F32BBF3E38 /* Pods_IoT_Anomaly_Detector.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,7 +168,6 @@
 			);
 			name = "IoT Anomaly Detector";
 			packageProductDependencies = (
-				9CA67095270FED2200BD9D1E /* SwiftUICharts */,
 			);
 			productName = "IoT Anomaly Detector";
 			productReference = 9CA6707A2706D33C00BD9D1E /* IoT Anomaly Detector.app */;
@@ -200,7 +197,6 @@
 			);
 			mainGroup = 9CA670712706D33C00BD9D1E;
 			packageReferences = (
-				9CA67094270FED2200BD9D1E /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 9CA6707B2706D33C00BD9D1E /* Products */;
 			projectDirPath = "";
@@ -473,25 +469,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		9CA67094270FED2200BD9D1E /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AfrazCodes/SwiftUICharts";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		9CA67095270FED2200BD9D1E /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9CA67094270FED2200BD9D1E /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
-			productName = SwiftUICharts;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9CA670722706D33C00BD9D1E /* Project object */;
 }
