@@ -7,6 +7,7 @@
 import UserNotifications
 //import SwiftUICharts
 import SwiftUI
+import Charts
 
 // class Test
 /*
@@ -52,13 +53,100 @@ class Test : Identifiable, ObservableObject {
     
 }
 */
- 
+
+
+struct DeviceDataLineChart: UIViewRepresentable {
+    let DeviceDataLineChart = LineChartView()
+    var entriesIn: [ChartDataEntry]
+    func makeUIView(context: Context) -> LineChartView {
+        return DeviceDataLineChart
+    }
+    
+    
+    func updateUIView(_ uiView: LineChartView, context: Context) {
+        setChartData(uiView)
+        configureChart(uiView)
+        formatXAxis(xAxis: uiView.xAxis)
+        formatYAxis(leftAxis: uiView.leftAxis)
+        //uiView.zoom(scaleX: 1.5, scaleY: 1, x: 0, y: 0)
+        formatLegend(legend: uiView.legend)
+        uiView.notifyDataSetChanged()
+        
+    }
+    
+    func setChartData(_ deviceDataLineChart: LineChartView){
+        let dataSetIn = LineChartDataSet(entries: entriesIn)
+        let dataSets: [LineChartDataSet] = [dataSetIn]
+        let lineChartData = LineChartData(dataSets: dataSets)
+        deviceDataLineChart.data = lineChartData
+        formatDataSet(dataSet: dataSetIn, label: "Data Points", color: .red)
+    }
+    
+    func formatDataSet(dataSet: LineChartDataSet, label: String, color: UIColor){
+        dataSet.label = label
+        dataSet.colors = [UIColor.red]
+        dataSet.valueColors = [.red]
+        dataSet.circleColors = [UIColor.red]
+        dataSet.circleRadius = 4
+        dataSet.circleHoleRadius = 0
+        dataSet.mode = .horizontalBezier
+        dataSet.lineWidth = 2
+        let format = NumberFormatter()
+        format.numberStyle = .none
+        dataSet.valueFormatter = DefaultValueFormatter(formatter: format)
+        dataSet.valueFont = UIFont.systemFont(ofSize: 12)
+    }
+    
+    func configureChart(_ lineChart: LineChartView) {
+        lineChart.noDataText = "No Data"
+        lineChart.drawGridBackgroundEnabled = true
+        lineChart.gridBackgroundColor = UIColor.tertiarySystemFill
+        lineChart.drawBordersEnabled = true
+        lineChart.rightAxis.enabled = false
+        lineChart.setScaleEnabled(true)
+        if lineChart.scaleX == 1.0 {
+            lineChart.zoom(scaleX: 1.5, scaleY: 1, x: 0, y: 0)
+        }
+            lineChart.animate(xAxisDuration: 0, yAxisDuration: 0.5, easingOption: .linear)
+        //let marker:BalloonMarker = BalloonMarker(color: UIColor.red, font: UIFont(name: "Helvetica", size: 12)!, textColor: UIColor.white, insets: UIEdgeInsets(top: 7.0, left: 7.0, bottom: 7.0, right: 7.0))
+        //marker.minimumSize = CGSize(width: 75, height: 35)
+        //lineChart.marker = marker
+    }
+    
+    func formatXAxis(xAxis: XAxis){
+        xAxis.labelPosition = .bottom
+        xAxis.valueFormatter = DefaultAxisValueFormatter(formatter: NumberFormatter())
+        xAxis.labelTextColor = .red
+        xAxis.labelFont = UIFont.boldSystemFont(ofSize: 12)
+        //xAxis.axisMaximum = 10000
+        xAxis.axisMinimum = -1
+    }
+    
+    func formatYAxis(leftAxis: YAxis) {
+        let leftAxisFormatter = NumberFormatter()
+        leftAxisFormatter.numberStyle = .none
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: leftAxisFormatter)
+        leftAxis.labelTextColor = .red
+        leftAxis.labelFont = UIFont.boldSystemFont(ofSize: 12)
+        leftAxis.axisMaximum = 101
+        leftAxis.axisMinimum = -1
+    }
+    
+    func formatLegend(legend: Legend) {
+        legend.textColor = UIColor.red
+        legend.horizontalAlignment = .right
+        legend.verticalAlignment = .top
+        legend.drawInside = true
+        legend.yOffset = 30.0
+    }
+    
+}
 
 class UserData : ObservableObject {
     private init() {}
     static let shared = UserData()
 
-    @Published var testDeviceList : DeviceData?
+    @Published var testDeviceList : [DeviceData] = []
     @Published var isSignedIn : Bool = false
 }
 
@@ -157,9 +245,9 @@ struct ContentView_Previews: PreviewProvider {
 
 // each devices own detailed view (currently holding sample graph data)
 struct TestDetailView: View {
-    
     var body: some View {
         TabView {
+            
             TestDetailViewTab1()
                 .tabItem {
                     Label("Tab1", systemImage: "chart.xyaxis.line")
@@ -173,18 +261,58 @@ struct TestDetailView: View {
 }
 
 struct TestDetailViewTab1: View {
+    @State private var selectedColorIndex = 0 // <1>
+
     var body: some View{
-        HStack{
+        VStack{
             Text("Tab 1")
+            Picker("Favorite Color", selection: $selectedColorIndex, content: { // <2>
+                            Text("Red").tag(0) // <3>
+                            Text("Green").tag(1) // <4>
+                            Text("Blue").tag(2) // <5>
+                        })
+            Text("Selected color: \(selectedColorIndex)") // <6>
+            Spacer()
         }
     }
 }
 struct TestDetailViewTab2: View {
+    //var device: Device
+    var dataP: [ChartDataEntry] = []
+    //var demoData2: ChartData = ChartData(values: [("Test1", 70), ("Test2", 72),("Test3", 65),("Test4", 75),("Test5", 73)])
+    var deviceType = "Fan"
     var body: some View{
         HStack{
-            Text("Tab 2")
+            //let lineChartStyle = ChartStyle(backgroundColor: .white, accentColor: .black, textColor: .black, legendTextColor: .black)
+            //let lineChartStyle = ChartStyle(backgroundColor: .white, accentColor: .black, gradientColor: GradientColor(start: .blue, end: .blue), textColor: .black, legendTextColor: .black, dropShadowColor: .blue)
+            VStack { // bar graph
+                let dataP = makeDataPoint()
+
+                DeviceDataLineChart(entriesIn: dataP)
+                    .frame(height: 400)
+                    .padding(.horizontal)
+                
+                //LineView(data: dataP, title: "M5 Stack", legend: "Weather Data", style: lineChartStyle, valueSpecifier: "%.2f")
+                Spacer()
+            }
         }
     }
+    
+    func makeDataPoint() -> [ChartDataEntry] {
+            
+            var points: [ChartDataEntry] = []
+            var writeList = deviceList.sorted {
+                $0.time ?? 0 < $1.time ?? 0
+            }
+            for i in 0..<writeList.count {
+                
+                let point = ChartDataEntry(x: Double(writeList[i].time ?? 0), y: Double(writeList[i].reading ?? 0))
+                    points.append(point)
+                
+            }
+            
+            return points
+        }
 }
 
 struct DetailView: View {

@@ -17,11 +17,9 @@ struct DeviceData: Decodable, Identifiable {
     var name: String?
     var reading: Int?
     var time: Int?
-    //var readings: [Int]?
 }
 
 var deviceList: [DeviceData] = []
-
 
 class Backend {
     var subscription: GraphQLSubscriptionOperation<TestData>?
@@ -184,9 +182,9 @@ class Backend {
                         let userData : UserData = .shared
                         let readData: DeviceData = DeviceData(pkID: createdTestData.id, device: createdTestData.device, name: createdTestData.device, reading: createdTestData.reading, time: createdTestData.time)
                         deviceList.append(readData)
-                        //userData.testDeviceList.append(readData)
+                        userData.testDeviceList.append(readData)
                         print("Successfully updated deviceList, num items: ", deviceList.count)
-                        //print("Successfully updated testDeviceList, num items: ", userData.testDeviceList.count)
+                        print("Successfully updated testDeviceList, num items: ", userData.testDeviceList.count)
 
                     }
                     print("Successfully got testData from subscription: \(createdTestData)")
