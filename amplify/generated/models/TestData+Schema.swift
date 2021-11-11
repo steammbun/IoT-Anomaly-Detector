@@ -6,10 +6,12 @@ extension TestData {
   // MARK: - CodingKeys 
    public enum CodingKeys: String, ModelKey {
     case id
-    case name
-    case device
-    case reading
-    case time
+    case sound
+    case temperature
+    case hvac
+    case occupancy
+    case timestamp
+    case dt
   }
   
   public static let keys = CodingKeys.self
@@ -22,10 +24,12 @@ extension TestData {
     
     model.fields(
       .id(),
-      .field(testData.name, is: .optional, ofType: .string),
-      .field(testData.device, is: .optional, ofType: .string),
-      .field(testData.reading, is: .optional, ofType: .int),
-      .field(testData.time, is: .optional, ofType: .int)
+      .field(testData.sound, is: .optional, ofType: .int),
+      .field(testData.temperature, is: .optional, ofType: .int),
+      .field(testData.hvac, is: .optional, ofType: .string),
+      .field(testData.occupancy, is: .optional, ofType: .string),
+      .field(testData.timestamp, is: .optional, ofType: .int),
+      .field(testData.dt, is: .optional, ofType: .string)
     )
     }
 }

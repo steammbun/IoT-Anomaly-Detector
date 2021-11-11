@@ -85,12 +85,12 @@ class Backend {
         _ = Amplify.Auth.signInWithWebUI(presentationAnchor: UIApplication.shared.windows.first!) { result in
             switch result {
             case .success(_):
-                
+                self.createSubscription()
                 print("Sign in succeeded")
             case .failure(let error):
                 print("Sign in failed \(error)")
             }
-            self.createSubscription()
+            
         }
     }
 
@@ -170,7 +170,8 @@ class Backend {
     }
     
     func createSubscription() {
-        subscription = Amplify.API.subscribe(request: .subscription(of: TestData.self, type:. onCreate), valueListener: {(subscriptionEvent) in
+        //subscription = Amplify.API.subscribe(request: .subscription(of: TestData.self, type: .onCreate), valueListener:
+        subscription = Amplify.API.subscribe(request: .subscription(of: TestData.self, type: .onCreate), valueListener: {(subscriptionEvent) in
             switch subscriptionEvent {
             case .connection(let subscriptionConnectionState):
                 print("Subscription connect state is \(subscriptionConnectionState)")

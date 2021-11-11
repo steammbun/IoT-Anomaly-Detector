@@ -1,7 +1,9 @@
 type TestData @model {
   id: ID!
-  name: String
-  device: String
-  reading: Int
-  time: Int
+  sound: Int
+  temperature: Int
+  hvac: String
+  occupancy: String
+  timestamp: Int
+  dt: String
 }

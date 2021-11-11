@@ -280,7 +280,7 @@ struct TestDetailViewTab2: View {
     //var device: Device
     var dataP: [ChartDataEntry] = []
     //var demoData2: ChartData = ChartData(values: [("Test1", 70), ("Test2", 72),("Test3", 65),("Test4", 75),("Test5", 73)])
-    var deviceType = "Fan"
+    //var deviceType = "Fan"
     var body: some View{
         HStack{
             //let lineChartStyle = ChartStyle(backgroundColor: .white, accentColor: .black, textColor: .black, legendTextColor: .black)

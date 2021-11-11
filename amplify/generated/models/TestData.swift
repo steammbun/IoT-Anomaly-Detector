@@ -4,20 +4,26 @@ import Foundation
 
 public struct TestData: Model {
   public let id: String
-  public var name: String?
-  public var device: String?
-  public var reading: Int?
-  public var time: Int?
+  public var sound: Int?
+  public var temperature: Int?
+  public var hvac: String?
+  public var occupancy: String?
+  public var timestamp: Int?
+  public var dt: String?
   
   public init(id: String = UUID().uuidString,
-      name: String? = nil,
-      device: String? = nil,
-      reading: Int? = nil,
-      time: Int? = nil) {
+      sound: Int? = nil,
+      temperature: Int? = nil,
+      hvac: String? = nil,
+      occupancy: String? = nil,
+      timestamp: Int? = nil,
+      dt: String? = nil) {
       self.id = id
-      self.name = name
-      self.device = device
-      self.reading = reading
-      self.time = time
+      self.sound = sound
+      self.temperature = temperature
+      self.hvac = hvac
+      self.occupancy = occupancy
+      self.timestamp = timestamp
+      self.dt = dt
   }
 }

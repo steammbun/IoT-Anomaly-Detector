@@ -14,7 +14,8 @@
     "categories": {
       "auth": {
         "iotanomalydetector40d56ad9": {},
-        "iotanomalydetectora9772cbd": {}
+        "iotanomalydetectora9772cbd": {},
+        "userPoolGroups": {}
       }
     }
   }
