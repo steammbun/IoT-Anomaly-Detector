@@ -108,9 +108,9 @@ struct DeviceDataLineChart: UIViewRepresentable {
             lineChart.zoom(scaleX: 1.5, scaleY: 1, x: 0, y: 0)
         }
             lineChart.animate(xAxisDuration: 0, yAxisDuration: 0.5, easingOption: .linear)
-        //let marker:BalloonMarker = BalloonMarker(color: UIColor.red, font: UIFont(name: "Helvetica", size: 12)!, textColor: UIColor.white, insets: UIEdgeInsets(top: 7.0, left: 7.0, bottom: 7.0, right: 7.0))
-        //marker.minimumSize = CGSize(width: 75, height: 35)
-        //lineChart.marker = marker
+        let marker:BalloonMarker = BalloonMarker(color: UIColor.red, font: UIFont(name: "Helvetica", size: 12)!, textColor: UIColor.white, insets: UIEdgeInsets(top: 7.0, left: 7.0, bottom: 7.0, right: 7.0))
+        marker.minimumSize = CGSize(width: 75, height: 35)
+        lineChart.marker = marker
     }
     
     func formatXAxis(xAxis: XAxis){
