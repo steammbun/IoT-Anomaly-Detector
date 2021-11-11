@@ -1,17 +1,17 @@
 {
   "api": {
-    "amplifyDatasource": {
+    "amplifyDB": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
               "userPoolId": "authiotanomalydetectora9772cbd"
             }
-          }
+          },
+          "additionalAuthenticationProviders": []
         }
       }
     }

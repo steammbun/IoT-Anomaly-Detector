@@ -12,11 +12,13 @@ import Amplify
 
 struct DeviceData: Decodable, Identifiable {
     let id = UUID()
-    var pkID: String
-    var device: String?
-    var name: String?
-    var reading: Int?
-    var time: Int?
+    var dbid: String
+    var sound: Int?
+    var temperature: Int?
+    var hvac: String?
+    var occupancy: String?
+    var timestamp: Int?
+    var dt: String?
 }
 
 var deviceList: [DeviceData] = []
@@ -85,12 +87,12 @@ class Backend {
         _ = Amplify.Auth.signInWithWebUI(presentationAnchor: UIApplication.shared.windows.first!) { result in
             switch result {
             case .success(_):
-                self.createSubscription()
                 print("Sign in succeeded")
             case .failure(let error):
                 print("Sign in failed \(error)")
             }
             
+            self.createSubscription()
         }
     }
 
@@ -127,7 +129,8 @@ class Backend {
     func createTestData() {
         let reading = Int.random(in: 1..<100);
         let time = Int.random(in: 1..<10000);
-        let testData = TestData(name: "speed", device: "TestDevice", reading: reading, time: time)
+        //let testData = TestData(name: "speed", device: "TestDevice", reading: reading, time: time)
+        let testData = TestData(sound: reading, temperature: reading, hvac: "TEST", occupancy: "EMPTY", timestamp: time, dt: "11/10")
         Amplify.API.mutate(request: .create(testData)) { event in
             switch event {
             case .success(let result):
@@ -148,8 +151,7 @@ class Backend {
     }
     
     func getTestData() {
-        let testId = "fridge7"
-        //testId = "fridge7"
+        let testId = "testid"
         Amplify.API.query(request: .get(TestData.self, byId: testId)) { event in
             switch event {
             case .success(let result):
@@ -170,7 +172,6 @@ class Backend {
     }
     
     func createSubscription() {
-        //subscription = Amplify.API.subscribe(request: .subscription(of: TestData.self, type: .onCreate), valueListener:
         subscription = Amplify.API.subscribe(request: .subscription(of: TestData.self, type: .onCreate), valueListener: {(subscriptionEvent) in
             switch subscriptionEvent {
             case .connection(let subscriptionConnectionState):
@@ -180,12 +181,12 @@ class Backend {
                 case .success(let createdTestData):
                     // create device data
                     DispatchQueue.main.async {
-                        let userData : UserData = .shared
-                        let readData: DeviceData = DeviceData(pkID: createdTestData.id, device: createdTestData.device, name: createdTestData.device, reading: createdTestData.reading, time: createdTestData.time)
+                        //let userData : UserData = .shared
+                        let readData: DeviceData = DeviceData(dbid: createdTestData.id, sound: createdTestData.sound, temperature: createdTestData.temperature, hvac: createdTestData.hvac, occupancy: createdTestData.occupancy, timestamp: createdTestData.timestamp, dt: createdTestData.dt)
                         deviceList.append(readData)
-                        userData.testDeviceList.append(readData)
+                        //userData.testDeviceList.append(readData)
                         print("Successfully updated deviceList, num items: ", deviceList.count)
-                        print("Successfully updated testDeviceList, num items: ", userData.testDeviceList.count)
+                        //print("Successfully updated user testDeviceList, num items: ", userData.testDeviceList.count)
 
                     }
                     print("Successfully got testData from subscription: \(createdTestData)")

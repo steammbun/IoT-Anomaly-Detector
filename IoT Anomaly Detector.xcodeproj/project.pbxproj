@@ -12,11 +12,7 @@
 		110F96A02717D6F700344B59 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F969F2717D6F700344B59 /* Backend.swift */; };
 		110F96AA2717F38900344B59 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A32717F38900344B59 /* AmplifyModels.swift */; };
 		110F96AB2717F38900344B59 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A42717F38900344B59 /* TestData.swift */; };
-		110F96AC2717F38900344B59 /* Note+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A52717F38900344B59 /* Note+Schema.swift */; };
 		110F96AD2717F38900344B59 /* TestData+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A62717F38900344B59 /* TestData+Schema.swift */; };
-		110F96AE2717F38900344B59 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A72717F38900344B59 /* Note.swift */; };
-		110F96AF2717F38900344B59 /* Task+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A82717F38900344B59 /* Task+Schema.swift */; };
-		110F96B02717F38900344B59 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A92717F38900344B59 /* Task.swift */; };
 		110F96B22717FA2E00344B59 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96B12717FA2E00344B59 /* Extension.swift */; };
 		1124BEC9272316A600C6B226 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1124BEC8272316A600C6B226 /* DeviceData.swift */; };
 		116495E8D51712F32BBF3E38 /* Pods_IoT_Anomaly_Detector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C86D4B899FE11990EFE2D9 /* Pods_IoT_Anomaly_Detector.framework */; };
@@ -67,11 +63,7 @@
 		110F969F2717D6F700344B59 /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
 		110F96A32717F38900344B59 /* AmplifyModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplifyModels.swift; sourceTree = "<group>"; };
 		110F96A42717F38900344B59 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
-		110F96A52717F38900344B59 /* Note+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+Schema.swift"; sourceTree = "<group>"; };
 		110F96A62717F38900344B59 /* TestData+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TestData+Schema.swift"; sourceTree = "<group>"; };
-		110F96A72717F38900344B59 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		110F96A82717F38900344B59 /* Task+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+Schema.swift"; sourceTree = "<group>"; };
-		110F96A92717F38900344B59 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		110F96B12717FA2E00344B59 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		1124BEC8272316A600C6B226 /* DeviceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceData.swift; sourceTree = "<group>"; };
 		1194A10A27347E3900AD8BED /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Desktop/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
@@ -115,11 +107,7 @@
 			children = (
 				110F96A32717F38900344B59 /* AmplifyModels.swift */,
 				110F96A42717F38900344B59 /* TestData.swift */,
-				110F96A52717F38900344B59 /* Note+Schema.swift */,
 				110F96A62717F38900344B59 /* TestData+Schema.swift */,
-				110F96A72717F38900344B59 /* Note.swift */,
-				110F96A82717F38900344B59 /* Task+Schema.swift */,
-				110F96A92717F38900344B59 /* Task.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -344,14 +332,10 @@
 				9CA670802706D33C00BD9D1E /* ContentView.swift in Sources */,
 				9CA6707E2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift in Sources */,
 				110F96B22717FA2E00344B59 /* Extension.swift in Sources */,
-				110F96B02717F38900344B59 /* Task.swift in Sources */,
 				110F96AA2717F38900344B59 /* AmplifyModels.swift in Sources */,
-				110F96AE2717F38900344B59 /* Note.swift in Sources */,
 				110F96AB2717F38900344B59 /* TestData.swift in Sources */,
 				110F96AD2717F38900344B59 /* TestData+Schema.swift in Sources */,
-				110F96AF2717F38900344B59 /* Task+Schema.swift in Sources */,
 				1124BEC9272316A600C6B226 /* DeviceData.swift in Sources */,
-				110F96AC2717F38900344B59 /* Note+Schema.swift in Sources */,
 				110F96A02717D6F700344B59 /* Backend.swift in Sources */,
 				1194A117273480C200AD8BED /* BalloonMarker.swift in Sources */,
 			);

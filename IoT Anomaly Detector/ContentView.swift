@@ -146,7 +146,7 @@ class UserData : ObservableObject {
     private init() {}
     static let shared = UserData()
 
-    @Published var testDeviceList : [DeviceData] = []
+    //@Published var testDeviceList : [DeviceData] = []
     @Published var isSignedIn : Bool = false
 }
 
@@ -302,13 +302,12 @@ struct TestDetailViewTab2: View {
             
             var points: [ChartDataEntry] = []
             var writeList = deviceList.sorted {
-                $0.time ?? 0 < $1.time ?? 0
+                $0.timestamp ?? 0 < $1.timestamp ?? 0
             }
             for i in 0..<writeList.count {
-                
-                let point = ChartDataEntry(x: Double(writeList[i].time ?? 0), y: Double(writeList[i].reading ?? 0))
-                    points.append(point)
-                
+                let time = (writeList[i].timestamp ?? 0) - (writeList[0].timestamp ?? 0)
+                let point = ChartDataEntry(x: Double(time), y: Double(writeList[i].temperature ?? 0))
+                points.append(point)
             }
             
             return points
