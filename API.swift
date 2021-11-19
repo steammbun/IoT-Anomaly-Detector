@@ -5,8 +5,8 @@ import AWSAppSync
 public struct CreateTestDataInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID? = nil, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, timestamp: Int? = nil, dt: String? = nil) {
-    graphQLMap = ["id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt]
+  public init(id: GraphQLID? = nil, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, anomaly: String? = nil, timestamp: Int? = nil, dt: String? = nil) {
+    graphQLMap = ["id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt]
   }
 
   public var id: GraphQLID? {
@@ -54,6 +54,15 @@ public struct CreateTestDataInput: GraphQLMapConvertible {
     }
   }
 
+  public var anomaly: String? {
+    get {
+      return graphQLMap["anomaly"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "anomaly")
+    }
+  }
+
   public var timestamp: Int? {
     get {
       return graphQLMap["timestamp"] as! Int?
@@ -76,8 +85,8 @@ public struct CreateTestDataInput: GraphQLMapConvertible {
 public struct ModelTestDataConditionInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(sound: ModelIntInput? = nil, temperature: ModelIntInput? = nil, hvac: ModelStringInput? = nil, occupancy: ModelStringInput? = nil, timestamp: ModelIntInput? = nil, dt: ModelStringInput? = nil, and: [ModelTestDataConditionInput?]? = nil, or: [ModelTestDataConditionInput?]? = nil, not: ModelTestDataConditionInput? = nil) {
-    graphQLMap = ["sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt, "and": and, "or": or, "not": not]
+  public init(sound: ModelIntInput? = nil, temperature: ModelIntInput? = nil, hvac: ModelStringInput? = nil, occupancy: ModelStringInput? = nil, anomaly: ModelStringInput? = nil, timestamp: ModelIntInput? = nil, dt: ModelStringInput? = nil, and: [ModelTestDataConditionInput?]? = nil, or: [ModelTestDataConditionInput?]? = nil, not: ModelTestDataConditionInput? = nil) {
+    graphQLMap = ["sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt, "and": and, "or": or, "not": not]
   }
 
   public var sound: ModelIntInput? {
@@ -113,6 +122,15 @@ public struct ModelTestDataConditionInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "occupancy")
+    }
+  }
+
+  public var anomaly: ModelStringInput? {
+    get {
+      return graphQLMap["anomaly"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "anomaly")
     }
   }
 
@@ -515,8 +533,8 @@ public struct ModelSizeInput: GraphQLMapConvertible {
 public struct UpdateTestDataInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, timestamp: Int? = nil, dt: String? = nil) {
-    graphQLMap = ["id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt]
+  public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, anomaly: String? = nil, timestamp: Int? = nil, dt: String? = nil) {
+    graphQLMap = ["id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt]
   }
 
   public var id: GraphQLID {
@@ -564,6 +582,15 @@ public struct UpdateTestDataInput: GraphQLMapConvertible {
     }
   }
 
+  public var anomaly: String? {
+    get {
+      return graphQLMap["anomaly"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "anomaly")
+    }
+  }
+
   public var timestamp: Int? {
     get {
       return graphQLMap["timestamp"] as! Int?
@@ -603,8 +630,8 @@ public struct DeleteTestDataInput: GraphQLMapConvertible {
 public struct ModelTestDataFilterInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: ModelIDInput? = nil, sound: ModelIntInput? = nil, temperature: ModelIntInput? = nil, hvac: ModelStringInput? = nil, occupancy: ModelStringInput? = nil, timestamp: ModelIntInput? = nil, dt: ModelStringInput? = nil, and: [ModelTestDataFilterInput?]? = nil, or: [ModelTestDataFilterInput?]? = nil, not: ModelTestDataFilterInput? = nil) {
-    graphQLMap = ["id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt, "and": and, "or": or, "not": not]
+  public init(id: ModelIDInput? = nil, sound: ModelIntInput? = nil, temperature: ModelIntInput? = nil, hvac: ModelStringInput? = nil, occupancy: ModelStringInput? = nil, anomaly: ModelStringInput? = nil, timestamp: ModelIntInput? = nil, dt: ModelStringInput? = nil, and: [ModelTestDataFilterInput?]? = nil, or: [ModelTestDataFilterInput?]? = nil, not: ModelTestDataFilterInput? = nil) {
+    graphQLMap = ["id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt, "and": and, "or": or, "not": not]
   }
 
   public var id: ModelIDInput? {
@@ -649,6 +676,15 @@ public struct ModelTestDataFilterInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "occupancy")
+    }
+  }
+
+  public var anomaly: ModelStringInput? {
+    get {
+      return graphQLMap["anomaly"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "anomaly")
     }
   }
 
@@ -825,7 +861,7 @@ public struct ModelIDInput: GraphQLMapConvertible {
 
 public final class CreateTestDataMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateTestData($input: CreateTestDataInput!, $condition: ModelTestDataConditionInput) {\n  createTestData(input: $input, condition: $condition) {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
+    "mutation CreateTestData($input: CreateTestDataInput!, $condition: ModelTestDataConditionInput) {\n  createTestData(input: $input, condition: $condition) {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    anomaly\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
 
   public var input: CreateTestDataInput
   public var condition: ModelTestDataConditionInput?
@@ -875,6 +911,7 @@ public final class CreateTestDataMutation: GraphQLMutation {
         GraphQLField("temperature", type: .scalar(Int.self)),
         GraphQLField("hvac", type: .scalar(String.self)),
         GraphQLField("occupancy", type: .scalar(String.self)),
+        GraphQLField("anomaly", type: .scalar(String.self)),
         GraphQLField("timestamp", type: .scalar(Int.self)),
         GraphQLField("dt", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
@@ -887,8 +924,8 @@ public final class CreateTestDataMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, anomaly: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -945,6 +982,15 @@ public final class CreateTestDataMutation: GraphQLMutation {
         }
       }
 
+      public var anomaly: String? {
+        get {
+          return snapshot["anomaly"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "anomaly")
+        }
+      }
+
       public var timestamp: Int? {
         get {
           return snapshot["timestamp"] as? Int
@@ -986,7 +1032,7 @@ public final class CreateTestDataMutation: GraphQLMutation {
 
 public final class UpdateTestDataMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateTestData($input: UpdateTestDataInput!, $condition: ModelTestDataConditionInput) {\n  updateTestData(input: $input, condition: $condition) {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
+    "mutation UpdateTestData($input: UpdateTestDataInput!, $condition: ModelTestDataConditionInput) {\n  updateTestData(input: $input, condition: $condition) {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    anomaly\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
 
   public var input: UpdateTestDataInput
   public var condition: ModelTestDataConditionInput?
@@ -1036,6 +1082,7 @@ public final class UpdateTestDataMutation: GraphQLMutation {
         GraphQLField("temperature", type: .scalar(Int.self)),
         GraphQLField("hvac", type: .scalar(String.self)),
         GraphQLField("occupancy", type: .scalar(String.self)),
+        GraphQLField("anomaly", type: .scalar(String.self)),
         GraphQLField("timestamp", type: .scalar(Int.self)),
         GraphQLField("dt", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
@@ -1048,8 +1095,8 @@ public final class UpdateTestDataMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, anomaly: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -1106,6 +1153,15 @@ public final class UpdateTestDataMutation: GraphQLMutation {
         }
       }
 
+      public var anomaly: String? {
+        get {
+          return snapshot["anomaly"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "anomaly")
+        }
+      }
+
       public var timestamp: Int? {
         get {
           return snapshot["timestamp"] as? Int
@@ -1147,7 +1203,7 @@ public final class UpdateTestDataMutation: GraphQLMutation {
 
 public final class DeleteTestDataMutation: GraphQLMutation {
   public static let operationString =
-    "mutation DeleteTestData($input: DeleteTestDataInput!, $condition: ModelTestDataConditionInput) {\n  deleteTestData(input: $input, condition: $condition) {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
+    "mutation DeleteTestData($input: DeleteTestDataInput!, $condition: ModelTestDataConditionInput) {\n  deleteTestData(input: $input, condition: $condition) {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    anomaly\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
 
   public var input: DeleteTestDataInput
   public var condition: ModelTestDataConditionInput?
@@ -1197,6 +1253,7 @@ public final class DeleteTestDataMutation: GraphQLMutation {
         GraphQLField("temperature", type: .scalar(Int.self)),
         GraphQLField("hvac", type: .scalar(String.self)),
         GraphQLField("occupancy", type: .scalar(String.self)),
+        GraphQLField("anomaly", type: .scalar(String.self)),
         GraphQLField("timestamp", type: .scalar(Int.self)),
         GraphQLField("dt", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
@@ -1209,8 +1266,8 @@ public final class DeleteTestDataMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, anomaly: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -1267,6 +1324,15 @@ public final class DeleteTestDataMutation: GraphQLMutation {
         }
       }
 
+      public var anomaly: String? {
+        get {
+          return snapshot["anomaly"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "anomaly")
+        }
+      }
+
       public var timestamp: Int? {
         get {
           return snapshot["timestamp"] as? Int
@@ -1308,7 +1374,7 @@ public final class DeleteTestDataMutation: GraphQLMutation {
 
 public final class GetTestDataQuery: GraphQLQuery {
   public static let operationString =
-    "query GetTestData($id: ID!) {\n  getTestData(id: $id) {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
+    "query GetTestData($id: ID!) {\n  getTestData(id: $id) {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    anomaly\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
 
   public var id: GraphQLID
 
@@ -1356,6 +1422,7 @@ public final class GetTestDataQuery: GraphQLQuery {
         GraphQLField("temperature", type: .scalar(Int.self)),
         GraphQLField("hvac", type: .scalar(String.self)),
         GraphQLField("occupancy", type: .scalar(String.self)),
+        GraphQLField("anomaly", type: .scalar(String.self)),
         GraphQLField("timestamp", type: .scalar(Int.self)),
         GraphQLField("dt", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
@@ -1368,8 +1435,8 @@ public final class GetTestDataQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, anomaly: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -1426,6 +1493,15 @@ public final class GetTestDataQuery: GraphQLQuery {
         }
       }
 
+      public var anomaly: String? {
+        get {
+          return snapshot["anomaly"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "anomaly")
+        }
+      }
+
       public var timestamp: Int? {
         get {
           return snapshot["timestamp"] as? Int
@@ -1467,7 +1543,7 @@ public final class GetTestDataQuery: GraphQLQuery {
 
 public final class ListTestDatasQuery: GraphQLQuery {
   public static let operationString =
-    "query ListTestDatas($filter: ModelTestDataFilterInput, $limit: Int, $nextToken: String) {\n  listTestDatas(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      sound\n      temperature\n      hvac\n      occupancy\n      timestamp\n      dt\n      createdAt\n      updatedAt\n    }\n    nextToken\n  }\n}"
+    "query ListTestDatas($filter: ModelTestDataFilterInput, $limit: Int, $nextToken: String) {\n  listTestDatas(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      sound\n      temperature\n      hvac\n      occupancy\n      anomaly\n      timestamp\n      dt\n      createdAt\n      updatedAt\n    }\n    nextToken\n  }\n}"
 
   public var filter: ModelTestDataFilterInput?
   public var limit: Int?
@@ -1565,6 +1641,7 @@ public final class ListTestDatasQuery: GraphQLQuery {
           GraphQLField("temperature", type: .scalar(Int.self)),
           GraphQLField("hvac", type: .scalar(String.self)),
           GraphQLField("occupancy", type: .scalar(String.self)),
+          GraphQLField("anomaly", type: .scalar(String.self)),
           GraphQLField("timestamp", type: .scalar(Int.self)),
           GraphQLField("dt", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
@@ -1577,8 +1654,8 @@ public final class ListTestDatasQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
-          self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
+        public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, anomaly: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
+          self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
         }
 
         public var __typename: String {
@@ -1635,6 +1712,15 @@ public final class ListTestDatasQuery: GraphQLQuery {
           }
         }
 
+        public var anomaly: String? {
+          get {
+            return snapshot["anomaly"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "anomaly")
+          }
+        }
+
         public var timestamp: Int? {
           get {
             return snapshot["timestamp"] as? Int
@@ -1677,7 +1763,7 @@ public final class ListTestDatasQuery: GraphQLQuery {
 
 public final class OnCreateTestDataSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnCreateTestData {\n  onCreateTestData {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
+    "subscription OnCreateTestData {\n  onCreateTestData {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    anomaly\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
 
   public init() {
   }
@@ -1718,6 +1804,7 @@ public final class OnCreateTestDataSubscription: GraphQLSubscription {
         GraphQLField("temperature", type: .scalar(Int.self)),
         GraphQLField("hvac", type: .scalar(String.self)),
         GraphQLField("occupancy", type: .scalar(String.self)),
+        GraphQLField("anomaly", type: .scalar(String.self)),
         GraphQLField("timestamp", type: .scalar(Int.self)),
         GraphQLField("dt", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
@@ -1730,8 +1817,8 @@ public final class OnCreateTestDataSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, anomaly: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -1785,6 +1872,15 @@ public final class OnCreateTestDataSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "occupancy")
+        }
+      }
+
+      public var anomaly: String? {
+        get {
+          return snapshot["anomaly"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "anomaly")
         }
       }
 
@@ -1829,7 +1925,7 @@ public final class OnCreateTestDataSubscription: GraphQLSubscription {
 
 public final class OnUpdateTestDataSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnUpdateTestData {\n  onUpdateTestData {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
+    "subscription OnUpdateTestData {\n  onUpdateTestData {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    anomaly\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
 
   public init() {
   }
@@ -1870,6 +1966,7 @@ public final class OnUpdateTestDataSubscription: GraphQLSubscription {
         GraphQLField("temperature", type: .scalar(Int.self)),
         GraphQLField("hvac", type: .scalar(String.self)),
         GraphQLField("occupancy", type: .scalar(String.self)),
+        GraphQLField("anomaly", type: .scalar(String.self)),
         GraphQLField("timestamp", type: .scalar(Int.self)),
         GraphQLField("dt", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
@@ -1882,8 +1979,8 @@ public final class OnUpdateTestDataSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, anomaly: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -1937,6 +2034,15 @@ public final class OnUpdateTestDataSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "occupancy")
+        }
+      }
+
+      public var anomaly: String? {
+        get {
+          return snapshot["anomaly"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "anomaly")
         }
       }
 
@@ -1981,7 +2087,7 @@ public final class OnUpdateTestDataSubscription: GraphQLSubscription {
 
 public final class OnDeleteTestDataSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnDeleteTestData {\n  onDeleteTestData {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
+    "subscription OnDeleteTestData {\n  onDeleteTestData {\n    __typename\n    id\n    sound\n    temperature\n    hvac\n    occupancy\n    anomaly\n    timestamp\n    dt\n    createdAt\n    updatedAt\n  }\n}"
 
   public init() {
   }
@@ -2022,6 +2128,7 @@ public final class OnDeleteTestDataSubscription: GraphQLSubscription {
         GraphQLField("temperature", type: .scalar(Int.self)),
         GraphQLField("hvac", type: .scalar(String.self)),
         GraphQLField("occupancy", type: .scalar(String.self)),
+        GraphQLField("anomaly", type: .scalar(String.self)),
         GraphQLField("timestamp", type: .scalar(Int.self)),
         GraphQLField("dt", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
@@ -2034,8 +2141,8 @@ public final class OnDeleteTestDataSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, sound: Int? = nil, temperature: Int? = nil, hvac: String? = nil, occupancy: String? = nil, anomaly: String? = nil, timestamp: Int? = nil, dt: String? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "TestData", "id": id, "sound": sound, "temperature": temperature, "hvac": hvac, "occupancy": occupancy, "anomaly": anomaly, "timestamp": timestamp, "dt": dt, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -2089,6 +2196,15 @@ public final class OnDeleteTestDataSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "occupancy")
+        }
+      }
+
+      public var anomaly: String? {
+        get {
+          return snapshot["anomaly"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "anomaly")
         }
       }
 

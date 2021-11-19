@@ -6,6 +6,7 @@ subscription OnCreateTestData {
     temperature
     hvac
     occupancy
+    anomaly
     timestamp
     dt
     createdAt
@@ -19,6 +20,7 @@ subscription OnUpdateTestData {
     temperature
     hvac
     occupancy
+    anomaly
     timestamp
     dt
     createdAt
@@ -32,6 +34,7 @@ subscription OnDeleteTestData {
     temperature
     hvac
     occupancy
+    anomaly
     timestamp
     dt
     createdAt

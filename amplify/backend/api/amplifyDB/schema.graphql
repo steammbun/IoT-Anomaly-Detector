@@ -4,6 +4,7 @@ type TestData @model {
   temperature: Int
   hvac: String
   occupancy: String
+  anomaly: String
   timestamp: Int
   dt: String
 }

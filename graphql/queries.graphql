@@ -6,6 +6,7 @@ query GetTestData($id: ID!) {
     temperature
     hvac
     occupancy
+    anomaly
     timestamp
     dt
     createdAt
@@ -24,6 +25,7 @@ query ListTestDatas(
       temperature
       hvac
       occupancy
+      anomaly
       timestamp
       dt
       createdAt

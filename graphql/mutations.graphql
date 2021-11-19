@@ -9,6 +9,7 @@ mutation CreateTestData(
     temperature
     hvac
     occupancy
+    anomaly
     timestamp
     dt
     createdAt
@@ -25,6 +26,7 @@ mutation UpdateTestData(
     temperature
     hvac
     occupancy
+    anomaly
     timestamp
     dt
     createdAt
@@ -41,6 +43,7 @@ mutation DeleteTestData(
     temperature
     hvac
     occupancy
+    anomaly
     timestamp
     dt
     createdAt
