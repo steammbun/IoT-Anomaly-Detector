@@ -17,11 +17,25 @@ struct DeviceData: Decodable, Identifiable {
     var temperature: Int?
     var hvac: String?
     var occupancy: String?
+    var anomaly: String?
+    var timestamp: Int?
+    var dt: String?
+}
+
+struct AnomalyData: Decodable, Identifiable {
+    let id = UUID()
+    var dbid: String
+    var sound: Int?
+    var temperature: Int?
+    var hvac: String?
+    var occupancy: String?
+    var anomaly: String?
     var timestamp: Int?
     var dt: String?
 }
 
 var deviceList: [DeviceData] = []
+var anomalyList: [AnomalyData] = []
 
 class Backend {
     var subscription: GraphQLSubscriptionOperation<TestData>?
@@ -91,7 +105,7 @@ class Backend {
             case .failure(let error):
                 print("Sign in failed \(error)")
             }
-            
+            // PROBABLY WHERE TO PULL DATA
             self.createSubscription()
         }
     }
@@ -130,7 +144,7 @@ class Backend {
         let reading = Int.random(in: 1..<100);
         let time = Int.random(in: 1..<10000);
         //let testData = TestData(name: "speed", device: "TestDevice", reading: reading, time: time)
-        let testData = TestData(sound: reading, temperature: reading, hvac: "TEST", occupancy: "EMPTY", timestamp: time, dt: "11/10")
+        let testData = TestData(sound: reading, temperature: reading, hvac: "TEST", occupancy: "EMPTY", anomaly: "FALSE", timestamp: time, dt: "11/10")
         Amplify.API.mutate(request: .create(testData)) { event in
             switch event {
             case .success(let result):
@@ -182,7 +196,11 @@ class Backend {
                     // create device data
                     DispatchQueue.main.async {
                         //let userData : UserData = .shared
-                        let readData: DeviceData = DeviceData(dbid: createdTestData.id, sound: createdTestData.sound, temperature: createdTestData.temperature, hvac: createdTestData.hvac, occupancy: createdTestData.occupancy, timestamp: createdTestData.timestamp, dt: createdTestData.dt)
+                        let readData: DeviceData = DeviceData(dbid: createdTestData.id, sound: createdTestData.sound, temperature: createdTestData.temperature, hvac: createdTestData.hvac, occupancy: createdTestData.occupancy, anomaly: createdTestData.anomaly, timestamp: createdTestData.timestamp, dt: createdTestData.dt)
+                        // if createdTestData.anomaly == "TRUE"
+                        // send notification
+                        // let anomData: AnomalyData = DeviceData(dbid: createdTestData.id, sound: createdTestData.sound, temperature: createdTestData.temperature, hvac: createdTestData.hvac, occupancy: createdTestData.occupancy, anomaly: createdTestData.anomaly, timestamp: createdTestData.timestamp, dt: createdTestData.dt)
+                        // deviceList.append(anomData)
                         deviceList.append(readData)
                         //userData.testDeviceList.append(readData)
                         print("Successfully updated deviceList, num items: ", deviceList.count)

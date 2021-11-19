@@ -206,7 +206,7 @@ struct ContentView: View {
                         }
                     }*/
                 }
-                        .toolbar {
+                        .toolbar { // Notification Button
                             Button(action: {
                                 let content = UNMutableNotificationContent()
                                 content.title = "Anomaly Alert"
@@ -358,8 +358,8 @@ struct TestDeviceRow: View {
     //var testDeviceList: [DeviceData]
     var body: some View{
         HStack {
-            Image(systemName: "wrench.and.screwdriver")
-            Text("Test Device")
+            Image(systemName: "cube") // SF symbol
+            Text("M5 Stack")
         }
     }
     

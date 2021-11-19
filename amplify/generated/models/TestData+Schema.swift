@@ -10,6 +10,7 @@ extension TestData {
     case temperature
     case hvac
     case occupancy
+    case anomaly
     case timestamp
     case dt
   }
@@ -28,6 +29,7 @@ extension TestData {
       .field(testData.temperature, is: .optional, ofType: .int),
       .field(testData.hvac, is: .optional, ofType: .string),
       .field(testData.occupancy, is: .optional, ofType: .string),
+      .field(testData.anomaly, is: .optional, ofType: .string),
       .field(testData.timestamp, is: .optional, ofType: .int),
       .field(testData.dt, is: .optional, ofType: .string)
     )
