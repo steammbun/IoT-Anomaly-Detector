@@ -10,7 +10,11 @@ extension TestData {
     case temperature
     case hvac
     case occupancy
-    case anomaly
+    case temp_anomaly
+    case sound_anomaly
+    case devName
+    case devId
+    case location
     case timestamp
     case dt
   }
@@ -26,10 +30,14 @@ extension TestData {
     model.fields(
       .id(),
       .field(testData.sound, is: .optional, ofType: .int),
-      .field(testData.temperature, is: .optional, ofType: .int),
+      .field(testData.temperature, is: .optional, ofType: .double),
       .field(testData.hvac, is: .optional, ofType: .string),
       .field(testData.occupancy, is: .optional, ofType: .string),
-      .field(testData.anomaly, is: .optional, ofType: .string),
+      .field(testData.temp_anomaly, is: .optional, ofType: .string),
+      .field(testData.sound_anomaly, is: .optional, ofType: .string),
+      .field(testData.devName, is: .optional, ofType: .string),
+      .field(testData.devId, is: .optional, ofType: .string),
+      .field(testData.location, is: .optional, ofType: .string),
       .field(testData.timestamp, is: .optional, ofType: .int),
       .field(testData.dt, is: .optional, ofType: .string)
     )

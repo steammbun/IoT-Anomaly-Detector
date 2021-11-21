@@ -10,26 +10,34 @@ import AmplifyPlugins
 import UIKit
 import Amplify
 
-struct DeviceData: Decodable, Identifiable {
+struct DeviceData: Identifiable {
     let id = UUID()
     var dbid: String
     var sound: Int?
-    var temperature: Int?
+    var temperature: Double?
     var hvac: String?
     var occupancy: String?
-    var anomaly: String?
+    var temp_anomaly: String?
+    var sound_anomaly: String?
+    var devName: String?
+    var devId: String?
+    var location: String?
     var timestamp: Int?
     var dt: String?
 }
 
-struct AnomalyData: Decodable, Identifiable {
+struct AnomalyData: Identifiable {
     let id = UUID()
     var dbid: String
     var sound: Int?
-    var temperature: Int?
+    var temperature: Double?
     var hvac: String?
     var occupancy: String?
-    var anomaly: String?
+    var temp_anomaly: String?
+    var sound_anomaly: String?
+    var devName: String?
+    var devId: String?
+    var location: String?
     var timestamp: Int?
     var dt: String?
 }
@@ -144,7 +152,7 @@ class Backend {
         let reading = Int.random(in: 1..<100);
         let time = Int.random(in: 1..<10000);
         //let testData = TestData(name: "speed", device: "TestDevice", reading: reading, time: time)
-        let testData = TestData(sound: reading, temperature: reading, hvac: "TEST", occupancy: "EMPTY", anomaly: "FALSE", timestamp: time, dt: "11/10")
+        let testData = TestData(sound: reading, temperature: Double(reading), hvac: "TEST", occupancy: "EMPTY", temp_anomaly: "FALSE", timestamp: time, dt: "11/10")
         Amplify.API.mutate(request: .create(testData)) { event in
             switch event {
             case .success(let result):
@@ -196,7 +204,7 @@ class Backend {
                     // create device data
                     DispatchQueue.main.async {
                         //let userData : UserData = .shared
-                        let readData: DeviceData = DeviceData(dbid: createdTestData.id, sound: createdTestData.sound, temperature: createdTestData.temperature, hvac: createdTestData.hvac, occupancy: createdTestData.occupancy, anomaly: createdTestData.anomaly, timestamp: createdTestData.timestamp, dt: createdTestData.dt)
+                        let readData: DeviceData = DeviceData(dbid: createdTestData.id, sound: createdTestData.sound, temperature: createdTestData.temperature, hvac: createdTestData.hvac, occupancy: createdTestData.occupancy, temp_anomaly: createdTestData.temp_anomaly, timestamp: createdTestData.timestamp, dt: createdTestData.dt)
                         // if createdTestData.anomaly == "TRUE"
                         // send notification
                         // let anomData: AnomalyData = DeviceData(dbid: createdTestData.id, sound: createdTestData.sound, temperature: createdTestData.temperature, hvac: createdTestData.hvac, occupancy: createdTestData.occupancy, anomaly: createdTestData.anomaly, timestamp: createdTestData.timestamp, dt: createdTestData.dt)

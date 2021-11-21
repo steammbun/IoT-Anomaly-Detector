@@ -6,7 +6,11 @@ subscription OnCreateTestData {
     temperature
     hvac
     occupancy
-    anomaly
+    temp_anomaly
+    sound_anomaly
+    devName
+    devId
+    location
     timestamp
     dt
     createdAt
@@ -20,7 +24,11 @@ subscription OnUpdateTestData {
     temperature
     hvac
     occupancy
-    anomaly
+    temp_anomaly
+    sound_anomaly
+    devName
+    devId
+    location
     timestamp
     dt
     createdAt
@@ -34,7 +42,11 @@ subscription OnDeleteTestData {
     temperature
     hvac
     occupancy
-    anomaly
+    temp_anomaly
+    sound_anomaly
+    devName
+    devId
+    location
     timestamp
     dt
     createdAt

@@ -247,15 +247,19 @@ struct ContentView_Previews: PreviewProvider {
 struct TestDetailView: View {
     var body: some View {
         TabView {
-            
+            TemperatureTabView()
+                .tabItem {
+                    Label("Temperature", systemImage: "chart.xyaxis.line")
+                }
+            TestTabView()
+                .tabItem {
+                    Label("Test", systemImage: "chart.xyaxis.line")
+                }
             TestDetailViewTab1()
                 .tabItem {
                     Label("Tab1", systemImage: "chart.xyaxis.line")
                 }
-            TestDetailViewTab2()
-                .tabItem {
-                    Label("Tab2", systemImage: "chart.xyaxis.line")
-                }
+            
         }
     }
 }
@@ -276,7 +280,8 @@ struct TestDetailViewTab1: View {
         }
     }
 }
-struct TestDetailViewTab2: View {
+
+struct TestTabView: View {
     //var device: Device
     var dataP: [ChartDataEntry] = []
     //var demoData2: ChartData = ChartData(values: [("Test1", 70), ("Test2", 72),("Test3", 65),("Test4", 75),("Test5", 73)])
@@ -287,7 +292,45 @@ struct TestDetailViewTab2: View {
             //let lineChartStyle = ChartStyle(backgroundColor: .white, accentColor: .black, gradientColor: GradientColor(start: .blue, end: .blue), textColor: .black, legendTextColor: .black, dropShadowColor: .blue)
             VStack { // bar graph
                 let dataP = makeDataPoint()
+                
+                DeviceDataLineChart(entriesIn: dataP)
+                    .frame(height: 400)
+                    .padding(.horizontal)
+                
+                //LineView(data: dataP, title: "M5 Stack", legend: "Weather Data", style: lineChartStyle, valueSpecifier: "%.2f")
+                Spacer()
+            }
+        }
+    }
+    
+    func makeDataPoint() -> [ChartDataEntry] {
+            
+            var points: [ChartDataEntry] = []
+            var writeList = deviceList.sorted {
+                $0.timestamp ?? 0 < $1.timestamp ?? 0
+            }
+            for i in 0..<writeList.count {
+                let time = (writeList[i].timestamp ?? 0) - (writeList[0].timestamp ?? 0)
+                let point = ChartDataEntry(x: Double(time), y: Double(writeList[i].sound ?? 0))
+                points.append(point)
+            }
+            
+            return points
+        }
+}
 
+struct TemperatureTabView: View {
+    //var device: Device
+    var dataP: [ChartDataEntry] = []
+    //var demoData2: ChartData = ChartData(values: [("Test1", 70), ("Test2", 72),("Test3", 65),("Test4", 75),("Test5", 73)])
+    //var deviceType = "Fan"
+    var body: some View{
+        HStack{
+            //let lineChartStyle = ChartStyle(backgroundColor: .white, accentColor: .black, textColor: .black, legendTextColor: .black)
+            //let lineChartStyle = ChartStyle(backgroundColor: .white, accentColor: .black, gradientColor: GradientColor(start: .blue, end: .blue), textColor: .black, legendTextColor: .black, dropShadowColor: .blue)
+            VStack { // bar graph
+                let dataP = makeDataPoint()
+                
                 DeviceDataLineChart(entriesIn: dataP)
                     .frame(height: 400)
                     .padding(.horizontal)

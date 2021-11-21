@@ -6,7 +6,11 @@ query GetTestData($id: ID!) {
     temperature
     hvac
     occupancy
-    anomaly
+    temp_anomaly
+    sound_anomaly
+    devName
+    devId
+    location
     timestamp
     dt
     createdAt
@@ -25,7 +29,46 @@ query ListTestDatas(
       temperature
       hvac
       occupancy
-      anomaly
+      temp_anomaly
+      sound_anomaly
+      devName
+      devId
+      location
+      timestamp
+      dt
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query DataByTimestamp(
+  $devId: String
+  $timestamp: ModelIntKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelTestDataFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  dataByTimestamp(
+    devId: $devId
+    timestamp: $timestamp
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      sound
+      temperature
+      hvac
+      occupancy
+      temp_anomaly
+      sound_anomaly
+      devName
+      devId
+      location
       timestamp
       dt
       createdAt

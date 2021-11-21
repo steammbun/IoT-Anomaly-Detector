@@ -1,10 +1,20 @@
-type TestData @model {
+type TestData @model 
+@key(
+  name: "byTimestamp"
+  fields: ["devId", "timestamp"]
+  queryField: "dataByTimestamp"
+)
+{
   id: ID!
   sound: Int
-  temperature: Int
+  temperature: Float
   hvac: String
   occupancy: String
-  anomaly: String
+  temp_anomaly: String
+  sound_anomaly: String
+  devName: String
+  devId: String
+  location: String
   timestamp: Int
   dt: String
 }
