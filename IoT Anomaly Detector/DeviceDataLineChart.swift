@@ -31,7 +31,7 @@ struct DeviceDataLineChart: UIViewRepresentable {
         let dataSets: [LineChartDataSet] = [dataSetIn]
         let lineChartData = LineChartData(dataSets: dataSets)
         deviceDataLineChart.data = lineChartData
-        formatDataSet(dataSet: dataSetIn, label: "", color: .black)
+        formatDataSet(dataSet: dataSetIn, label: "Temperature (F)", color: .black)
     }
     
     func formatDataSet(dataSet: LineChartDataSet, label: String, color: UIColor){

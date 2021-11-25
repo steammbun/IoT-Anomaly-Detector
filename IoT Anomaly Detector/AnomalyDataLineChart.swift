@@ -32,10 +32,10 @@ struct AnomalyDataLineChart: UIViewRepresentable {
         let lineChartData = LineChartData(dataSets: dataSets)
         deviceDataLineChart.data = lineChartData
         if(deviceDataLineChart.scaleX > 1){
-            zoomFormatDataSet(dataSet: dataSetIn, label: "", color: .red)
+            zoomFormatDataSet(dataSet: dataSetIn, label: "Anomaly", color: .red)
         }
         else{
-            formatDataSet(dataSet: dataSetIn, label: "", color: .red)
+            formatDataSet(dataSet: dataSetIn, label: "Anomaly", color: .red)
         }
     }
     
@@ -88,7 +88,7 @@ struct AnomalyDataLineChart: UIViewRepresentable {
     func formatXAxis(xAxis: XAxis){
         xAxis.labelPosition = .bottom
         xAxis.valueFormatter = DefaultAxisValueFormatter(formatter: NumberFormatter())
-        xAxis.labelTextColor = .red
+        xAxis.labelTextColor = .black
         xAxis.labelFont = UIFont.boldSystemFont(ofSize: 12)
         //xAxis.axisMaximum = 100
         xAxis.axisMinimum = -1
@@ -98,7 +98,7 @@ struct AnomalyDataLineChart: UIViewRepresentable {
         let leftAxisFormatter = NumberFormatter()
         leftAxisFormatter.numberStyle = .none
         leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: leftAxisFormatter)
-        leftAxis.labelTextColor = .red
+        leftAxis.labelTextColor = .black
         leftAxis.labelFont = UIFont.boldSystemFont(ofSize: 12)
         leftAxis.axisMaximum = 101
         //leftAxis.axisMinimum = -1
