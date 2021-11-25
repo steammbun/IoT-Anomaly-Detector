@@ -5,45 +5,57 @@
 //  Created by Steven Khuu on 10/13/21.
 //
 
-
 import AmplifyPlugins
 import UIKit
 import Amplify
 
-struct DeviceData: Identifiable {
+// holds one row of device data read in from AppSync
+struct DeviceData: Decodable, Identifiable {
+    let id = UUID()             // id for iterating in Swift
+    var devID: String?          // id from graphQL
+    var devName: String?
+    var sound: Int?
+    var temperature: Double?
+    var hvac: String?
+    var occupancy: String?
+    var sound_anomaly: String?  // boolean value for anomaly
+    var temp_anomaly: String?   // boolean value for anomaly
+    var timestamp: Int?         // UNIX time
+    var dt: String?
+}
+
+// holds in data if row is a sound anomaly
+struct SoundAnomalyData: Decodable, Identifiable {
     let id = UUID()
-    var dbid: String
+    var devID: String?
+    var devName: String?
+    var sound: Int?
+    var temperature: Double?
+    var hvac: String?
+    var occupancy: String?
+    var sound_anomaly: String?
+    var timestamp: Int?
+    var dt: String?
+}
+
+// holds in data if row is a temperature anomaly
+struct TempAnomalyData: Decodable, Identifiable {
+    let id = UUID()
+    var devID: String?
+    var devName: String?
     var sound: Int?
     var temperature: Double?
     var hvac: String?
     var occupancy: String?
     var temp_anomaly: String?
-    var sound_anomaly: String?
-    var devName: String?
-    var devId: String?
-    var location: String?
     var timestamp: Int?
     var dt: String?
 }
 
-struct AnomalyData: Identifiable {
-    let id = UUID()
-    var dbid: String
-    var sound: Int?
-    var temperature: Double?
-    var hvac: String?
-    var occupancy: String?
-    var temp_anomaly: String?
-    var sound_anomaly: String?
-    var devName: String?
-    var devId: String?
-    var location: String?
-    var timestamp: Int?
-    var dt: String?
-}
-
+// store the data structs in a list
 var deviceList: [DeviceData] = []
-var anomalyList: [AnomalyData] = []
+var soundAnomalyList: [SoundAnomalyData] = []
+var tempAnomalyList: [TempAnomalyData] = []
 
 class Backend {
     var subscription: GraphQLSubscriptionOperation<TestData>?
@@ -66,7 +78,6 @@ class Backend {
         // listen to auth events.
         // see https://github.com/aws-amplify/amplify-ios/blob/master/Amplify/Categories/Auth/Models/AuthEventName.swift
         _ = Amplify.Hub.listen(to: .auth) { (payload) in
-
             switch payload.eventName {
 
             case HubPayload.EventName.Auth.signedIn:
@@ -86,26 +97,21 @@ class Backend {
                 break
             }
         }
-         
         // let's check if user is signedIn or not
          _ = Amplify.Auth.fetchAuthSession { (result) in
              do {
                  let session = try result.get()
-                        
         // let's update UserData and the UI
              self.updateUserData(withSignInStatus: session.isSignedIn)
-                        
              } catch {
                   print("Fetch auth session failed with error - \(error)")
             }
         }
-        
     }
     // MARK: - User Authentication
-
+    
     // signin with Cognito web user interface
     public func signIn() {
-
         _ = Amplify.Auth.signInWithWebUI(presentationAnchor: UIApplication.shared.windows.first!) { result in
             switch result {
             case .success(_):
@@ -113,14 +119,14 @@ class Backend {
             case .failure(let error):
                 print("Sign in failed \(error)")
             }
-            // PROBABLY WHERE TO PULL DATA
-            self.createSubscription()
+            
+            //self.createSubscription()      // initialize subscription to API on user sign in
+            self.listFetch()                 // fetch data from API on user sign in
         }
     }
-
+    
     // signout
     public func signOut() {
-
         _ = Amplify.Auth.signOut() { (result) in
             switch result {
             case .success:
@@ -128,7 +134,7 @@ class Backend {
             case .failure(let error):
                 print("Sign out failed with error \(error)")
             }
-            self.cancelSubscription()
+            //self.cancelSubscription()     // cancel subscription upon user sign out
         }
     }
 
@@ -137,17 +143,10 @@ class Backend {
         DispatchQueue.main.async() {
             let userData : UserData = .shared
             userData.isSignedIn = status
-            
-            /* only query test when user is signed in
-            if status {
-                        self.queryTest()
-                    } else {
-                        userData.tests = []
-                    }
-             */
         }
     }
     
+    // test AppSync create query
     func createTestData() {
         let reading = Int.random(in: 1..<100);
         let time = Int.random(in: 1..<10000);
@@ -168,10 +167,38 @@ class Backend {
         }
     }
     
-    func getDevices() {
-        
+    // query data from AppSync starting at a specific time
+    func listFetch(){
+        let testdata = TestData.keys
+        let predicate = testdata.timestamp >= 1637524131 // specify timestamp to pull from
+        Amplify.API.query(request: .paginatedList(TestData.self, where: predicate, limit: 289)) { event in
+            switch event {
+            case .success(let result):
+                switch result {
+                case .success(let testdatas):
+                    print("Successfully retrieved list of TestDatas: \(testdatas) \(testdatas.count)")
+                    for i in 0..<testdatas.count {
+                        if(testdatas[i].temp_anomaly == "TRUE"){ // store as a temperature anomaly if true
+                            let anomalyPoint = TempAnomalyData.init(devID: testdatas[i].devId, devName: testdatas[i].devName, sound: testdatas[i].sound, temperature: testdatas[i].temperature, hvac: testdatas[i].hvac, occupancy: testdatas[i].occupancy, temp_anomaly: testdatas[i].temp_anomaly, timestamp: testdatas[i].timestamp, dt: testdatas[i].dt)
+                            tempAnomalyList.append(anomalyPoint)
+                        }
+                        if(testdatas[i].sound_anomaly == "TRUE"){ // store as a sound anomaly if true
+                            let anomalyPoint = SoundAnomalyData.init(devID: testdatas[i].devId, devName: testdatas[i].devName, sound: testdatas[i].sound, temperature: testdatas[i].temperature, hvac: testdatas[i].hvac, occupancy: testdatas[i].occupancy, sound_anomaly: testdatas[i].sound_anomaly, timestamp: testdatas[i].timestamp, dt: testdatas[i].dt)
+                            soundAnomalyList.append(anomalyPoint)
+                        }
+                        let point = DeviceData.init(devID: testdatas[i].devId, devName: testdatas[i].devName, sound: testdatas[i].sound, temperature: testdatas[i].temperature, hvac: testdatas[i].hvac, occupancy: testdatas[i].occupancy, sound_anomaly: testdatas[i].sound_anomaly, temp_anomaly: testdatas[i].temp_anomaly, timestamp: testdatas[i].timestamp, dt: testdatas[i].dt)
+                        deviceList.append(point) // add all entries into deviceList
+                    }
+                case .failure(let error):
+                    print("Got failed result with \(error.errorDescription)")
+                }
+            case .failure(let error):
+                print("Got failed event with error \(error)")
+            }
+        }
     }
-    
+
+    // test querying API with an ID
     func getTestData() {
         let testId = "testid"
         Amplify.API.query(request: .get(TestData.self, byId: testId)) { event in
@@ -193,6 +220,9 @@ class Backend {
         }
     }
     
+    // CURRENTLY UNUSED
+    // creates a subscription that listens for 'create' mutations in the API and appends to deviceList
+    /*
     func createSubscription() {
         subscription = Amplify.API.subscribe(request: .subscription(of: TestData.self, type: .onCreate), valueListener: {(subscriptionEvent) in
             switch subscriptionEvent {
@@ -201,19 +231,10 @@ class Backend {
             case .data(let result):
                 switch result {
                 case .success(let createdTestData):
-                    // create device data
                     DispatchQueue.main.async {
-                        //let userData : UserData = .shared
-                        let readData: DeviceData = DeviceData(dbid: createdTestData.id, sound: createdTestData.sound, temperature: createdTestData.temperature, hvac: createdTestData.hvac, occupancy: createdTestData.occupancy, temp_anomaly: createdTestData.temp_anomaly, timestamp: createdTestData.timestamp, dt: createdTestData.dt)
-                        // if createdTestData.anomaly == "TRUE"
-                        // send notification
-                        // let anomData: AnomalyData = DeviceData(dbid: createdTestData.id, sound: createdTestData.sound, temperature: createdTestData.temperature, hvac: createdTestData.hvac, occupancy: createdTestData.occupancy, anomaly: createdTestData.anomaly, timestamp: createdTestData.timestamp, dt: createdTestData.dt)
-                        // deviceList.append(anomData)
+                        let readData: DeviceData = DeviceData(devID: createdTestData.id, sound: createdTestData.sound, temperature: createdTestData.temperature, hvac: createdTestData.hvac, occupancy: createdTestData.occupancy, temp_anomaly: createdTestData.temp_anomaly, timestamp: createdTestData.timestamp, dt: createdTestData.dt)
                         deviceList.append(readData)
-                        //userData.testDeviceList.append(readData)
                         print("Successfully updated deviceList, num items: ", deviceList.count)
-                        //print("Successfully updated user testDeviceList, num items: ", userData.testDeviceList.count)
-
                     }
                     print("Successfully got testData from subscription: \(createdTestData)")
                 case .failure(let error):
@@ -229,34 +250,12 @@ class Backend {
             }
         }
     }
+    */
     
+    // end subscription on signout
+    /*
     func cancelSubscription() {
         subscription?.cancel()
     }
-    
-    // query test
-    /*
-    func queryTest() {
-            _ = Amplify.API.query(request: .list(TestData.self)) { event in
-                switch event {
-                case .success(let result):
-                    switch result {
-                    case .success(let testsData):
-                        print("Successfully retrieved list of tests")
-                        // convert an array of NoteData to an array of Note class instances
-                        for n in testsData {
-                            let test = Test.init(from: n)
-                            DispatchQueue.main.async() {
-                                UserData.shared.tests.append(test)
-                            }
-                        }
-                    case .failure(let error):
-                        print("Can not retrieve result : error  \(error.errorDescription)")
-                    }
-                case .failure(let error):
-                    print("Can not retrieve Notes : error \(error)")
-                }
-            }
-        }*/
-
+    */
 }

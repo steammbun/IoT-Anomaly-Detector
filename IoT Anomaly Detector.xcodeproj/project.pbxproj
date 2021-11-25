@@ -14,6 +14,9 @@
 		110F96AB2717F38900344B59 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A42717F38900344B59 /* TestData.swift */; };
 		110F96AD2717F38900344B59 /* TestData+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96A62717F38900344B59 /* TestData+Schema.swift */; };
 		110F96B22717FA2E00344B59 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F96B12717FA2E00344B59 /* Extension.swift */; };
+		1121893E274F2BC6006D1BEB /* SoundDataLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1121893D274F2BC6006D1BEB /* SoundDataLineChart.swift */; };
+		11218940274F2C57006D1BEB /* DeviceDataLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1121893F274F2C57006D1BEB /* DeviceDataLineChart.swift */; };
+		11218942274F2CDE006D1BEB /* AnomalyDataLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11218941274F2CDE006D1BEB /* AnomalyDataLineChart.swift */; };
 		1124BEC9272316A600C6B226 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1124BEC8272316A600C6B226 /* DeviceData.swift */; };
 		116495E8D51712F32BBF3E38 /* Pods_IoT_Anomaly_Detector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C86D4B899FE11990EFE2D9 /* Pods_IoT_Anomaly_Detector.framework */; };
 		1194A11327347E7600AD8BED /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1194A11027347E3900AD8BED /* Charts.framework */; platformFilter = ios; };
@@ -65,6 +68,9 @@
 		110F96A42717F38900344B59 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		110F96A62717F38900344B59 /* TestData+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TestData+Schema.swift"; sourceTree = "<group>"; };
 		110F96B12717FA2E00344B59 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		1121893D274F2BC6006D1BEB /* SoundDataLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDataLineChart.swift; sourceTree = "<group>"; };
+		1121893F274F2C57006D1BEB /* DeviceDataLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataLineChart.swift; sourceTree = "<group>"; };
+		11218941274F2CDE006D1BEB /* AnomalyDataLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnomalyDataLineChart.swift; sourceTree = "<group>"; };
 		1124BEC8272316A600C6B226 /* DeviceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceData.swift; sourceTree = "<group>"; };
 		1194A10A27347E3900AD8BED /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Desktop/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		1194A116273480C200AD8BED /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
@@ -165,6 +171,9 @@
 				110F96B12717FA2E00344B59 /* Extension.swift */,
 				1124BEC8272316A600C6B226 /* DeviceData.swift */,
 				1194A116273480C200AD8BED /* BalloonMarker.swift */,
+				1121893D274F2BC6006D1BEB /* SoundDataLineChart.swift */,
+				1121893F274F2C57006D1BEB /* DeviceDataLineChart.swift */,
+				11218941274F2CDE006D1BEB /* AnomalyDataLineChart.swift */,
 			);
 			path = "IoT Anomaly Detector";
 			sourceTree = "<group>";
@@ -332,7 +341,10 @@
 				9CA670802706D33C00BD9D1E /* ContentView.swift in Sources */,
 				9CA6707E2706D33C00BD9D1E /* IoT_Anomaly_DetectorApp.swift in Sources */,
 				110F96B22717FA2E00344B59 /* Extension.swift in Sources */,
+				11218940274F2C57006D1BEB /* DeviceDataLineChart.swift in Sources */,
+				11218942274F2CDE006D1BEB /* AnomalyDataLineChart.swift in Sources */,
 				110F96AA2717F38900344B59 /* AmplifyModels.swift in Sources */,
+				1121893E274F2BC6006D1BEB /* SoundDataLineChart.swift in Sources */,
 				110F96AB2717F38900344B59 /* TestData.swift in Sources */,
 				110F96AD2717F38900344B59 /* TestData+Schema.swift in Sources */,
 				1124BEC9272316A600C6B226 /* DeviceData.swift in Sources */,
