@@ -3,6 +3,8 @@
 //  IoT Anomaly Detector
 //
 //  Created by Steven Khuu on 10/13/21.
+//  Description: Initialize Amplify plugins (Cognito, AppSync), manages user auth, holds data structs from API, queries data
+//  from AppSync (API) and provides unused functionality for creating API subscriptions
 //
 
 import AmplifyPlugins
