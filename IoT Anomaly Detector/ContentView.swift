@@ -54,7 +54,7 @@ struct M5DeviceRow: View {
     var body: some View{
         HStack {
             Image(systemName: "cube") // from SF symbols
-            Text("M5Stack")
+            Text("M5 Stack")
         }
     }
 }

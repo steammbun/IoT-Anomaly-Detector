@@ -25,6 +25,8 @@ struct DeviceDataView: View {
             .tabItem {
                 Label("Anomaly", systemImage: "exclamationmark.triangle")
             }
+        }.onAppear(){
+            UITabBar.appearance().isTranslucent = false
         }
     }
 }

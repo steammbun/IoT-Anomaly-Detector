@@ -123,7 +123,10 @@ class Backend {
             }
             
             //self.createSubscription()      // initialize subscription to API on user sign in
+            let start = CFAbsoluteTimeGetCurrent()
             self.listFetch()                 // fetch data from API on user sign in
+            let diff = CFAbsoluteTimeGetCurrent() - start
+            print("Fetch took \(diff) seconds")
         }
     }
     
